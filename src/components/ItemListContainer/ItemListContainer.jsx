@@ -13,6 +13,7 @@ const ItemListContainer = ({ greeting }) => {
     const [products, setProducts] = useState([])
     const [prev, setPrev] = useState(false);
     const [next, setNext] = useState(false);
+    //ver como usar next y prev para paginar
     const [load, setLoad] = useState(true)
     const [filter, setFilter] = useState([])
     const { category } = useParams()
