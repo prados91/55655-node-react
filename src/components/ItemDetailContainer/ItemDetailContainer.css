@@ -1,0 +1,4 @@
+.itemDetailContainer__container {
+    min-height: calc(100vh - 172px - 35px);
+  }
+  

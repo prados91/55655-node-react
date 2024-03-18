@@ -1,0 +1,111 @@
+.itemDetail__container {
+    max-width: 60%;
+    margin: 0px auto;
+    padding-top: 40px;
+}
+
+.itemDetail__container h1 {
+    background: rgb(61, 61, 61);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    height: max-content;
+    padding: 10px;
+}
+
+.itemDetail__columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.itemDetail__column--imageAux {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto 10px;
+    width: 100px;
+}
+
+.itemDetail__column--image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto 10px;
+    width: 400px;
+    padding: 20px;
+}
+
+.itemDetail__column--description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto 10px;
+    width: 400px;
+}
+
+.itemDetail__column--description p {
+    padding: 5px;
+}
+
+.itemDetail__column--description h2 {
+    padding: 5px;
+}
+
+.itemDetail__btn--AddItemToCart {
+    height: 40px;
+    width: 100%;
+    background: rgb(61, 61, 61);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+.itemDetail__btn--AddItemToCart:hover {
+    background: #ff9c08b3;
+    color: #000;
+    border: 1px solid #ff9c08;
+    transition: 0.25s;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .itemDetail__columns {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .itemDetail__column--description {
+        width: auto;
+    }
+
+    .itemDetail__column--image {
+        width: auto;
+    }
+
+    .itemDetail__container h1 {
+        font-size: 16px;
+    }
+
+    .itemDetail__column--imageAux {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+    .itemDetail__column--imageAux {
+        width: 75px;
+        justify-content: space-around;
+    }
+
+}

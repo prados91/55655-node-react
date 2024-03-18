@@ -1,0 +1,36 @@
+.itemCount__container {
+    width: 100%;
+  }
+  
+  .itemCount__quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .itemCount__quantity--btnSubItem,
+  .itemCount__quantity--btnAddItem {
+    height: fit-content;
+    width: 35px;
+    background: rgb(61, 61, 61);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    transition: 0.25s;
+  }
+  
+  .itemCount__quantity--btnSubItem:hover,
+  .itemCount__quantity--btnAddItem:hover {
+    background: rgb(255, 156, 8);
+    color: #000;
+    border: 1px solid rgb(255, 156, 8);
+    transition: 0.25s;
+  }
+  
+  .itemCount__quantity--totalItem {
+    font-size: 24px;
+    margin: 0;
+  }
+  
