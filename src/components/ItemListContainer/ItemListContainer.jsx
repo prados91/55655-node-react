@@ -27,15 +27,15 @@ const ItemListContainer = ({ greeting }) => {
                 setProducts(res.data.response.docs);
                 setPrev(res.data.response.prevPage);
                 setNext(res.data.response.nextPage);
-                if (category != undefined) {
+               /* if (category != undefined) {
                     const result = products.filter(p => p.category == category)
-                    console.log(result)
+                    //console.log(result)
                     setFilter(result)
                 }
                 else {
                     setFilter(res.data.response.docs)
                 }
-                setLoad(false)
+                setLoad(false)*/
             })
             .catch((err) => console.log(err));
     }, [category]);
@@ -45,7 +45,7 @@ const ItemListContainer = ({ greeting }) => {
             {load ? (<Loading />) :
                 (<>
                     <h1>{greeting}</h1>
-                    <ItemList products={filter} />
+                    <ItemList products={products} />
                 </>
                 )}
         </div>
