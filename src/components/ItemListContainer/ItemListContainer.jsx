@@ -11,8 +11,8 @@ import './ItemListContainer.css'
 const ItemListContainer = ({ greeting }) => {
 
     const [products, setProducts] = useState([])
-    const [prev, setPrev] = useState(false);
-    const [next, setNext] = useState(false);
+    const [hasPrev, setHasPrev] = useState(false);
+    const [hasNext, setHasNext] = useState(false);
     //ver como usar next y prev para paginar
     const [load, setLoad] = useState(true)
     const [filter, setFilter] = useState([])
@@ -21,15 +21,13 @@ const ItemListContainer = ({ greeting }) => {
 
     useEffect(() => {
         setLoad(true)
-        axios(API_LINK)
+        axios(API_LINK, { withCredentials: true })
             .then((res) => {
-                console.log(res.data.response);
                 setProducts(res.data.response.docs);
-                setPrev(res.data.response.prevPage);
-                setNext(res.data.response.nextPage);
+                setHasPrev(res.data.response.hasPrevPage);
+                setHasNext(res.data.response.hasNextPage);
                 if (category != undefined) {
                     const result = products.filter(p => p.category == category)
-                    //console.log(result)
                     setFilter(result)
                 }
                 else {
@@ -45,7 +43,7 @@ const ItemListContainer = ({ greeting }) => {
             {load ? (<Loading />) :
                 (<>
                     <h1>{greeting}</h1>
-                    <ItemList products={filter} />
+                    <ItemList products={products} />
                 </>
                 )}
         </div>

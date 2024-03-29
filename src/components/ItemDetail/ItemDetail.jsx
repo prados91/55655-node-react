@@ -98,9 +98,9 @@ const ItemDetail = ({ products }) => {
                     */}
 
                 <div className="itemDetail__column--image">
-                    <div>
-                        {!mobileResponsive ? <img src={photo} alt={title} /> : <img src={photo} alt={title} />}
-                    </div>
+
+                    {!mobileResponsive ? <img src={photo} alt={title} /> : <img src={photo} alt={title} />}
+
                 </div>
                 <div className="itemDetail__column--description">
                     <p>{title}</p>

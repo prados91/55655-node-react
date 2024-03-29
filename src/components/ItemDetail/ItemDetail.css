@@ -17,7 +17,7 @@
 .itemDetail__columns {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-radius: 20px;
     background-color: white;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
@@ -35,7 +35,7 @@
 .itemDetail__column--image {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     margin: auto 10px;
     width: 400px;
     padding: 20px;

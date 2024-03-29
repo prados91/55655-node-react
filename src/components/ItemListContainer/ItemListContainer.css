@@ -1,10 +1,13 @@
   .itemListContainer__container {
-    min-height: calc(100vh - 172px - 35px);
-    background-color: #F9C56D;
- }
+      min-height: calc(100vh - 35px);
+      background-color: #F9C56D;
+      background-color: #92979d;
+      padding-top: 130px;
+      padding-bottom: 30px;
+  }
 
-  .itemListContainer__container h1{
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  .itemListContainer__container h1 {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
   }
