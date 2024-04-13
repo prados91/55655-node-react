@@ -1,13 +1,17 @@
-  .itemListContainer__container {
-      min-height: calc(100vh - 35px);
-      background-color: #F9C56D;
-      background-color: #92979d;
-      padding-top: 130px;
-      padding-bottom: 30px;
-  }
+.itemListContainer__container {
+    min-height: calc(100vh - 35px);
+    background-color: #f9c56d;
+    background-color: #92979d;
+    padding-top: 130px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  .itemListContainer__container h1 {
-      text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
-  }
+}
+
+.itemListContainer__container h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

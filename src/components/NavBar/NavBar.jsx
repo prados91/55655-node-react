@@ -7,6 +7,7 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 
 import { UserContext } from "../../context/UserContext";
+import { ProductContext } from "../../context/ProductContext";
 
 import './NavBar.css'
 
@@ -18,13 +19,8 @@ const NavBar = () => {
 
 
     const { user, setUser, admin, setAdmin, role, setRole } = useContext(UserContext)
-    function scrollHandler() {
-        if (window.scrollY >= 20) {
-            setnavbarblur(true);
-        } else {
-            setnavbarblur(false);
-        }
-    }
+    const { setHome } = useContext(ProductContext)
+
 
     const showMenu = () => {
         var bar = document.getElementsByClassName("bar");
@@ -52,7 +48,6 @@ const NavBar = () => {
         cookie = cookie.find(each => each.split("=")[0] === "token")
 
         const res = await axios.post(API_LINK, role, cookie);
-        console.log(res);
         if (res.data.statusCode === 200) {
             setUser(false)
             setAdmin(false)
@@ -71,11 +66,17 @@ const NavBar = () => {
         }
     }
 
+    function scrollHandler() {
+        if (window.scrollY >= 20) {
+            setnavbarblur(true);
+        } else {
+            setnavbarblur(false);
+        }
+    }
     window.addEventListener("scroll", scrollHandler);
-
     return (
         <nav className={navbarblur ? "Navbar blur" : "Navbar"}>
-            <Link to="/">
+            <Link to="/" onClick={() => setHome(true)}>
                 <img src={navLogo2} alt="Logo de la tienda" className={navbarblur ? "navbar_logo blur_img" : "navbar_logo"} />
             </Link>
 

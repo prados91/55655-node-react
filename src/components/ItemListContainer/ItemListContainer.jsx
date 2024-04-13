@@ -1,50 +1,79 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import { React, useState, useEffect, useContext } from 'react'
 import ItemList from '../ItemList/ItemList'
 import Loading from '../Loading/Loading'
 import axios from 'axios'
+import PageCount from '../PageCount/PageCount'
+import Filter from '../Filter/Filter'
 
-import { NavLink, useParams } from 'react-router-dom'
+import { ProductContext } from '../../context/ProductContext'
 
 import './ItemListContainer.css'
-
 const ItemListContainer = ({ greeting }) => {
 
+    axios.defaults.withCredentials = true;
+
     const [products, setProducts] = useState([])
-    const [hasPrev, setHasPrev] = useState(false);
-    const [hasNext, setHasNext] = useState(false);
-    //ver como usar next y prev para paginar
+    const [totalPages, setTotalPages] = useState(1)
     const [load, setLoad] = useState(true)
-    const [filter, setFilter] = useState([])
-    const { category } = useParams()
-    const API_LINK = "http://localhost:8080/api/products"
+    const [page, setPage] = useState(1);
+    const [title, setTitle] = useState("")
+
+    const { home, setHome } = useContext(ProductContext)
+
+    const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
 
     useEffect(() => {
         setLoad(true)
-        axios(API_LINK, { withCredentials: true })
+        axios.get(API_LINK)
             .then((res) => {
-                setProducts(res.data.response.docs);
-                setHasPrev(res.data.response.hasPrevPage);
-                setHasNext(res.data.response.hasNextPage);
-                if (category != undefined) {
-                    const result = products.filter(p => p.category == category)
-                    setFilter(result)
-                }
-                else {
-                    setFilter(res.data.response.docs)
-                }
+                setProducts(() => [...res.data.response.docs]);
+                setTotalPages(res.data.response.totalPages)
                 setLoad(false)
             })
             .catch((err) => console.log(err));
-    }, [category]);
+    }, [page]);
+
+    useEffect(() => {
+        setLoad(true)
+        setPage(1)
+        setTitle("")
+        axios.get(API_LINK)
+            .then((res) => {
+                setProducts(() => [...res.data.response.docs]);
+                setTotalPages(res.data.response.totalPages)
+                setHome(false)
+                setLoad(false)
+            })
+            .catch((err) => console.log(err));
+    }, [home]);
+
+    useEffect(() => {
+        setLoad(true)
+        setPage(1)
+        axios.get(API_LINK)
+            .then((res) => {
+                setProducts(() => [...res.data.response.docs]);
+                setTotalPages(res.data.response.totalPages)
+                setLoad(false)
+            })
+            .catch((err) => console.log(err));
+    }, [title]);
+
 
     return (
-        <div className="itemListContainer__container">
+        <div >
             {load ? (<Loading />) :
-                (<>
-                    <h1>{greeting}</h1>
-                    <ItemList products={products} />
-                </>
+                (
+                    <div className="container itemListContainer__container d-flex flex-column justify-content-center align-items-center">
+                        <h1>{greeting}</h1>
+                        <Filter setTitle={setTitle} />
+                        <div>
+                            <ItemList products={products} />
+                        </div>
+                        <div className="mt-auto">
+                            <PageCount page={page} totalPages={totalPages} setPage={setPage} />
+                        </div>
+                    </div>
                 )}
         </div>
     )
