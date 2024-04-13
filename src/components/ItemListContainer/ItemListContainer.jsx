@@ -3,6 +3,8 @@ import ItemList from '../ItemList/ItemList'
 import Loading from '../Loading/Loading'
 import axios from 'axios'
 import PageCount from '../PageCount/PageCount'
+import PagesCount from '../PageCount/PagesCount'
+
 import Filter from '../Filter/Filter'
 
 import { ProductContext } from '../../context/ProductContext'
@@ -71,7 +73,8 @@ const ItemListContainer = ({ greeting }) => {
                             <ItemList products={products} />
                         </div>
                         <div className="mt-auto">
-                            <PageCount page={page} totalPages={totalPages} setPage={setPage} />
+                            {/* <PageCount page={page} totalPages={totalPages} setPage={setPage} /> */}
+                            <PagesCount page={page} totalPages={totalPages} setPage={setPage} />
                         </div>
                     </div>
                 )}

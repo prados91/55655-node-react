@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ItemDetail from '../ItemDetail/ItemDetail'
 import axios from 'axios';
 import Loading from '../Loading/Loading'
-import { getFirestore, getDoc, doc } from "firebase/firestore";
 
 import './ItemDetailContainer.css'
 import { useParams } from 'react-router-dom';

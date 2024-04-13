@@ -6,7 +6,6 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Footer from './components/Footer/Footer';
 import CartContainer from './components/CartContainer/CartContainer';
-import Form from './components/Form/Form'
 import Register from './components/Register/Register';
 import { CartProvider } from './context/CartContext';
 import Login from './components/Login/Login';

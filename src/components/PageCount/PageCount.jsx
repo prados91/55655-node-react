@@ -1,6 +1,8 @@
 import React from 'react'
 import { Pagination } from 'react-bootstrap'
 
+import PagesCount from '../PageCount/PagesCount'
+
 const PageCount = ({ page, totalPages, setPage }) => {
     return (
         <Pagination>
