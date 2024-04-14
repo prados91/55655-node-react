@@ -1,6 +1,5 @@
 import { React, useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import CartWidget from '../CartWidget/CartWidget'
 import navLogo1 from '../../images/logoBasketStoreWhite.svg'
 import navLogo2 from '../../images/logoBasketStoreWhite.png'
 import axios from "axios";
