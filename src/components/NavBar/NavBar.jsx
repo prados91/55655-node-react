@@ -1,8 +1,8 @@
 import { React, useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import CartWidget from '../CartWidget/CartWidget'
-import navLogo from '/logoBasketStore2.png'
-import navLogo2 from '/logo2.png'
+import navLogo1 from '../../images/logoBasketStoreWhite.svg'
+import navLogo2 from '../../images/logoBasketStoreWhite.png'
 import axios from "axios";
 import Swal from 'sweetalert2';
 
@@ -18,7 +18,7 @@ const NavBar = () => {
     const [navbarblur, setnavbarblur] = useState(false);
 
 
-    const { user, setUser, admin, setAdmin, role, setRole } = useContext(UserContext)
+    const { user, setUser, admin, setAdmin, role, setRole, prem, setPrem } = useContext(UserContext)
     const { setHome } = useContext(ProductContext)
 
 
@@ -49,8 +49,9 @@ const NavBar = () => {
 
         const res = await axios.post(API_LINK, role, cookie);
         if (res.data.statusCode === 200) {
-            setUser(false)
             setAdmin(false)
+            setUser(false)
+            setPrem(false)
             setRole("")
             Swal.fire({
                 title: "GOOD BYE!",
@@ -77,7 +78,7 @@ const NavBar = () => {
     return (
         <nav className={navbarblur ? "Navbar blur" : "Navbar"}>
             <Link to="/" onClick={() => setHome(true)}>
-                <img src={navLogo2} alt="Logo de la tienda" className={navbarblur ? "navbar_logo blur_img" : "navbar_logo"} />
+                <img src={navLogo1} alt="Logo de la tienda" className={navbarblur ? "navbar_logo blur_img" : "navbar_logo"} />
             </Link>
 
             <div className="Hamburger" onClick={showMenu}>
@@ -96,7 +97,7 @@ const NavBar = () => {
                 {user && <li id="cartLink" onClick={hideMenu}>
                     <Link to="/cart">My Cart</Link>
                 </li>}
-                {!admin && !user && <li id="registerLink" onClick={hideMenu}>
+                {!admin && !user && !prem && <li id="registerLink" onClick={hideMenu}>
                     <Link to="/register">Register</Link>
                 </li>}
                 {role === "" ?

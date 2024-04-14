@@ -16,6 +16,7 @@
     transition: all 0.7s;
     padding: 10px;
     background-color: #1c242d;
+    background-color: #343330;
 }
 
 .blur {
@@ -50,7 +51,6 @@
     padding: 2px 20px;
     list-style-type: none;
 }
-
 
 
 .NavbarLinks a {
@@ -100,9 +100,11 @@
         flex-direction: column;
         justify-content: flex-start;
         position: fixed;
-        inset: 0 0 0 80%;
+        inset: 0 0 0 100%;
+        width: 40%;
         gap: 50px;
         background-color: #0c2f69;
+        background-color: #343330;
         height: 100vh;
         padding-top: max(20%, 120px);
         transform: translateX(100%);
@@ -110,7 +112,8 @@
     }
 
     .showNavbar {
-        transform: translateX(0);
+        transform: translateX(-100%);
+        padding-left: 0;
     }
 
     .Hamburger {
@@ -147,5 +150,8 @@
         bottom: 4px;
         rotate: 225deg;
         transition: 0.5s;
+    }
+    .navbar_logo{
+        width: 50%;
     }
 }

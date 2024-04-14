@@ -3,8 +3,10 @@ import { React, useState } from 'react'
 import { Formik } from "formik";
 import axios from 'axios';
 import Loading from '../Loading/Loading';
-
 import Swal from 'sweetalert2';
+
+import './Register.css'
+
 const Register = () => {
 
     const [load, setLoad] = useState(false);
@@ -51,7 +53,7 @@ const Register = () => {
     }
     return (
 
-        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly register_container">
+        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly register__container">
             <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
                 {!load && !register && (
                     <>
@@ -95,13 +97,13 @@ const Register = () => {
                                     handleSubmit,
                                     isSubmitting,
                                 }) => (
-                                    <form onSubmit={handleSubmit} className='form__container--form'>
-                                        <input className="form__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
-                                        <input className="form__input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" />{errors.password && touched.password}
-                                        <input className="form__input" type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" />{errors.name && touched.name}
-                                        <input className="form__input" type="text" name="lastname" onChange={handleChange} onBlur={handleBlur} value={values.lastname} placeholder="LastName" />
-                                        <input className="form__input" type="number" name="age" onChange={handleChange} onBlur={handleBlur} value={values.age} placeholder="Age" />
-                                        <input className="form__input" type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" />
+                                    <form onSubmit={handleSubmit} className='register__container--form'>
+                                        <input className="register__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
+                                        <input className="register__input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" />{errors.password && touched.password}
+                                        <input className="register__input" type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" />{errors.name && touched.name}
+                                        <input className="register__input" type="text" name="lastname" onChange={handleChange} onBlur={handleBlur} value={values.lastname} placeholder="LastName" />
+                                        <input className="register__input" type="number" name="age" onChange={handleChange} onBlur={handleBlur} value={values.age} placeholder="Age" />
+                                        <input className="register__input" type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" />
                                         <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Register!</button>
                                         <button id="google" type="button" className="w-100 btn btn-dark mt-3">Google!</button>
                                         <button id="github" type="button" className="w-100 btn btn-dark mt-3">Github!</button>
@@ -150,9 +152,9 @@ const Register = () => {
                                     handleSubmit,
                                     isSubmitting,
                                 }) => (
-                                    <form onSubmit={handleSubmit} className='form__container--form'>
-                                        <input className="form__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
-                                        <input className="form__input" type="text" name="verifiedCode" onChange={handleChange} onBlur={handleBlur} value={values.verifiedCode} placeholder="Verify Code" />{errors.verifiedCode && touched.verifiedCode}
+                                    <form onSubmit={handleSubmit} className='register__container--form'>
+                                        <input className="register__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
+                                        <input className="register__input" type="text" name="verifiedCode" onChange={handleChange} onBlur={handleBlur} value={values.verifiedCode} placeholder="Verify Code" />{errors.verifiedCode && touched.verifiedCode}
                                         <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Verify!</button>
                                     </form>
                                 )}

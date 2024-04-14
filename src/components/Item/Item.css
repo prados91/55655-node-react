@@ -41,6 +41,8 @@
 .item__card--link:hover {
     color: #ffffff;
     box-shadow: 0 4px 8px 0 #ff9c08;
+    box-shadow: 0 4px 8px 0 #6f7275;
+
 }
 
 .img-fluid {
