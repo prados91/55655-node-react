@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar/NavBar";
@@ -14,6 +13,7 @@ import ProductForm from './components/ProductForm/ProductForm';
 
 import './App.css'
 import ProductProvider from './context/ProductContext';
+import RestorePass from './components/RestorePass/RestorePass';
 function App() {
 
     return (
@@ -28,6 +28,7 @@ function App() {
                         <Route path="/form" element={<ProductForm />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/restore" element={<RestorePass />} />
                         <Route exact path='*' element={<h1> 404 NOT FOUND </h1>} />
                     </Routes>
                     <Footer />

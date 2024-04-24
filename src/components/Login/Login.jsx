@@ -1,7 +1,6 @@
-import { React, useState, useEffect, useContext } from "react";
-import { Formik, setIn } from "formik";
+import { useContext } from "react";
+import { Formik } from "formik";
 import { Link } from "react-router-dom";
-import Loading from '../Loading/Loading';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 
@@ -71,7 +70,7 @@ const Login = () => {
 
 
     return (
-        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly register__container">
+        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly form__container">
             <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
                 {(!admin && !user && !prem) ? <h2 className="mt-5 mb-2 text-center">LOG IN!</h2> : <h2 className="mt-5 mb-2 text-center">ALREADY LOGED</h2>}
 
@@ -118,6 +117,7 @@ const Login = () => {
                                 {(!admin && !user && !prem) &&
                                     <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Log In</button>
                                 }
+                                <Link to="/restore" className="w-100 btn btn-dark mt-3">Restore Password</Link>
                             </form>
                         )}
                     </Formik>
