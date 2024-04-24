@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import Swal from 'sweetalert2';
 
+import './ProductForm.css'
+
 
 const ProductForm = () => {
 
@@ -14,19 +16,17 @@ const ProductForm = () => {
     const functionCreate = async (data) => {
         try {
             const res = await axios.post(API_LINK, data, { withCredentials: true });
-            console.log(res.data)
             if (res.data.statusCode === 201) {
                 Swal.fire({
                     title: "PRODUCT CREATED!",
                     icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK",
-                }).then((result) => {
+                })/*.then((result) => {
                     if (result.isConfirmed) {
                         location.replace("/");
                     }
-                });
-
+                };*/
             }
         } catch (error) {
             console.log(error);
@@ -34,7 +34,7 @@ const ProductForm = () => {
     }
 
     return (
-        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly register_container">
+        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly form__container">
             <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
                 <h2 className="mt-5 mb-2 text-center">CREATE A NEW PRODUCT!</h2>
 
