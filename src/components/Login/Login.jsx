@@ -117,7 +117,9 @@ const Login = () => {
                                 {(!admin && !user && !prem) &&
                                     <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Log In</button>
                                 }
-                                <Link to="/restore" className="w-100 btn btn-dark mt-3">Restore Password</Link>
+                                {(!admin && !user && !prem) &&
+                                    <Link to="/restore" className="w-100 btn btn-dark mt-3">Restore Password</Link>
+                                }
                             </form>
                         )}
                     </Formik>
