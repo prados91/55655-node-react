@@ -1,4 +1,4 @@
-import {useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, } from "react-router-dom";
 import navLogo1 from '../../images/logoBasketStoreWhite.svg'
 import axios from "axios";
@@ -16,7 +16,7 @@ const NavBar = () => {
     const [navbarblur, setnavbarblur] = useState(false);
 
 
-    const { user, setUser, admin, setAdmin, role, setRole, prem, setPrem } = useContext(UserContext)
+    const { user, setUser, admin, setAdmin, role, setRole, prem, setPrem, userName, setUserName } = useContext(UserContext)
     const { setHome } = useContext(ProductContext)
 
 
@@ -51,6 +51,7 @@ const NavBar = () => {
             setUser(false)
             setPrem(false)
             setRole("")
+            setUserName("")
             Swal.fire({
                 title: "GOOD BYE!",
                 icon: "success",
@@ -93,7 +94,7 @@ const NavBar = () => {
                     <Link to="/form">Form</Link>
                 </li>}
                 {user || prem && <li id="cartLink" onClick={hideMenu}>
-                    <Link to="/cart">My Cart</Link>
+                    <Link to="/cart">{userName} Cart</Link>
                 </li>}
                 {!admin && !user && !prem && <li id="registerLink" onClick={hideMenu}>
                     <Link to="/register">Register</Link>

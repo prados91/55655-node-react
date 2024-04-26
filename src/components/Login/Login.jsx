@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-    const { user, admin, setRole, setAdmin, setUser, prem, setPrem } = useContext(UserContext);
+    const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
 
     const API_LINK = "http://localhost:8080/api/sessions/login"
     const API_USER = "http://localhost:8080/api/sessions/me"
@@ -23,6 +23,7 @@ const Login = () => {
                 const response = await axios.post(API_USER, cookie)
                 const userRole = response.data.response.role
                 const userName = response.data.response.name
+                setUserName(userName)
                 switch (userRole) {
                     case "ADMIN":
                         setAdmin(true);
