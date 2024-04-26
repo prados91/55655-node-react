@@ -1,7 +1,6 @@
-import { React, useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {useContext, useState } from "react";
+import { Link, } from "react-router-dom";
 import navLogo1 from '../../images/logoBasketStoreWhite.svg'
-import navLogo2 from '../../images/logoBasketStoreWhite.png'
 import axios from "axios";
 import Swal from 'sweetalert2';
 
@@ -90,10 +89,10 @@ const NavBar = () => {
                 <li id="homeLink" onClick={hideMenu}>
                     <Link to="/">Home</Link>
                 </li>
-                {admin && <li id="formLink" onClick={hideMenu}>
+                {admin || prem && <li id="formLink" onClick={hideMenu}>
                     <Link to="/form">Form</Link>
                 </li>}
-                {user && <li id="cartLink" onClick={hideMenu}>
+                {user || prem && <li id="cartLink" onClick={hideMenu}>
                     <Link to="/cart">My Cart</Link>
                 </li>}
                 {!admin && !user && !prem && <li id="registerLink" onClick={hideMenu}>
@@ -104,8 +103,7 @@ const NavBar = () => {
                         <Link to="/login"> Login</Link>
                     </li> :
                     <li id="signOutLink">
-                        {/*<Link to="/signout">SignOut</Link>*/}
-                        <Link id="signOutLink" onClick={submintLogOut}>SignOut</Link>
+                        <Link onClick={submintLogOut}>SignOut</Link>
                     </li>
                 }
 
