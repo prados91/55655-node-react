@@ -3,6 +3,7 @@
     margin: 0px auto;
     padding-top: 100px;
 }
+
 /*
 .register__container h2 {
     background: rgb(61, 61, 61);
@@ -23,11 +24,11 @@
     padding: 30px;
     border-radius: 25px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    gap: 20px;
+    gap: 10px;
 }
 
 .register__input {
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     padding: 10px;
     font-size: 18px;
     background-color: rgb(233, 233, 233);
@@ -97,6 +98,25 @@
     background-color: white;
     transition: 0.25s;
 }
+
+.btn_restore {
+    text-align: left;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    color: rgba(119, 136, 153);
+    font-weight: 600;
+    opacity: 60%;
+    transition: opacity 0.5s, text-decoration 0.5s;
+}
+
+.btn_restore:hover {
+    text-decoration: underline;
+    opacity: 100%;
+}
+
+
 
 @media screen and (max-width: 768px) {
     .register__order p {
