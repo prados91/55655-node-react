@@ -119,7 +119,13 @@ const Login = () => {
                                     <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Log In</button>
                                 }
                                 {(!admin && !user && !prem) &&
-                                    <Link to="/restore" className="w-100 btn btn-dark mt-3">Restore Password</Link>
+                                    // <Link to="/restore" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Forgot your password?</Link>
+                                    <Link
+                                        className=" btn_restore"
+                                        to="/restore"
+                                    >
+                                        Forgot your password?
+                                    </Link>
                                 }
                             </form>
                         )}
