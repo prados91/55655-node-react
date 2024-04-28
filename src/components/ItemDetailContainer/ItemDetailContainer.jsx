@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from "react";
 import ItemDetail from '../ItemDetail/ItemDetail'
 import axios from 'axios';
@@ -19,7 +18,6 @@ const ItemDetailContainer = () => {
         setLoad(true)
         axios(API_LINK)
             .then((res) => {
-                console.log(res.data.response);
                 setProduct(res.data.response.docs);
                 setLoad(false)
             })
