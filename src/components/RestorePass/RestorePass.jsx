@@ -11,13 +11,13 @@ const RestorePass = () => {
     const { id, setId } = useContext(UserContext)
     const [recovery, setRecovery] = useState(false)
 
+
     axios.defaults.withCredentials = true;
     const API_LINK = "http://localhost:8080/api/sessions/recovery"
     const API_LINK2 = `http://localhost:8080/api/users/${id}`
 
     const functionRecovery = async (data) => {
         try {
-
             const res = await axios.post(API_LINK, data);
 
             if (res.data.message === "Not Found") {
@@ -37,7 +37,7 @@ const RestorePass = () => {
                     if (result.isConfirmed || !result.isConfirmed) {
                         setId(res.data.userId)
                         setRecovery(true)
-                        //location.replace("/")
+                        location.replace("/")
                     }
                 });
 
@@ -50,6 +50,7 @@ const RestorePass = () => {
     const functionRestore = async (data) => {
         try {
             const modify = { password: data.newPassword }
+
             const res = await axios.put(API_LINK2, modify);
             if (res.data.statusCode === 200) {
                 Swal.fire({
