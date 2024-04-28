@@ -1,36 +1,50 @@
-import { useContext } from "react";
 import { Formik } from "formik";
 import axios from 'axios';
-
 import Swal from 'sweetalert2';
-import { UserContext } from "../../context/UserContext";
+import { useParams } from "react-router-dom";
 
 const RestoreInfo = () => {
 
-    const { id, setId } = useContext(UserContext)
-    console.log(id)
-
+    const { uid } = useParams()
+    const API_LINK = `http://localhost:8080/api/users/${uid}`
     axios.defaults.withCredentials = true;
+
     const functionRestore = async (data) => {
         try {
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "emailToken")
-            const API_LINK = `http://localhost:8080/api/users/${id}`
-            const modify = { password: data.newPassword }
-            const res = await axios.put(API_LINK, modify, cookie);
-            if (res.data.statusCode === 201) {
-                Swal.fire({
-                    title: `${res.data.message} Password updated`,
-                    icon: "success",
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "OK",
-                })
+            if (cookie) {
+                const modify = { password: data.newPassword }
+                const res = await axios.put(API_LINK, modify, cookie);
+                if (res.data.statusCode === 201) {
+                    Swal.fire({
+                        title: `Password updated`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                    }).then((result) => {
+                        if (result.isConfirmed || !result.isConfirmed) {
+                            location.replace("/login")
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        title: res.data.message,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                    })
+                }
             } else {
                 Swal.fire({
-                    title: res.data.message,
+                    title: "Link expired",
                     icon: "error",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed || !result.isConfirmed) {
+                        location.replace("/")
+                    }
                 })
             }
         } catch (error) {
