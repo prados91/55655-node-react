@@ -14,7 +14,8 @@ import ProductForm from './components/ProductForm/ProductForm';
 import './App.css'
 import ProductProvider from './context/ProductContext';
 import RestorePass from './components/RestorePass/RestorePass';
-import RestoreInfo from "./components/RestoreInfo/RestoreInfo";
+// import RestoreInfo from "./components/RestoreInfo/RestoreInfo";
+import RestoreContainer from "./components/RestoreContainer/RestoreContainer";
 function App() {
 
     return (
@@ -30,7 +31,9 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/restore" element={<RestorePass />} />
-                        <Route path="/restoreInfo/:uid" element={<RestoreInfo />} />
+                        {/* <Route path="/restoreInfo/:uid" element={<RestoreInfo />} /> */}
+                        <Route path="/restoreInfo" element={<RestoreContainer />} />
+
                         <Route exact path='*' element={<h1> 404 NOT FOUND </h1>} />
                     </Routes>
                     <Footer />
