@@ -9,13 +9,13 @@ const RestoreInfo = () => {
 
     const { id, setId } = useContext(UserContext)
     console.log(id)
-    const API_LINK = `http://localhost:8080/api/users/${id}`
 
     axios.defaults.withCredentials = true;
     const functionRestore = async (data) => {
         try {
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "emailToken")
+            const API_LINK = `http://localhost:8080/api/users/${id}`
             const modify = { password: data.newPassword }
             const res = await axios.put(API_LINK, modify, cookie);
             if (res.data.statusCode === 201) {
@@ -37,6 +37,7 @@ const RestoreInfo = () => {
             console.log(error);
         }
     };
+
 
 
     return (
