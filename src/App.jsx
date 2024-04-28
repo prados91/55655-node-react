@@ -30,7 +30,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/restore" element={<RestorePass />} />
-                        <Route path="/restoreInfo" element={<RestoreInfo />} />
+                        <Route path="/restoreInfo/:uid" element={<RestoreInfo />} />
                         <Route exact path='*' element={<h1> 404 NOT FOUND </h1>} />
                     </Routes>
                     <Footer />
