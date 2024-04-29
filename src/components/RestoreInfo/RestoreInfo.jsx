@@ -1,52 +1,54 @@
 import { Formik } from "formik";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams } from "react-router-dom";
 
-const RestoreInfo = () => {
-
-    const { uid } = useParams()
+const RestoreInfo = ({ uid }) => {
+    /*
+        const { uid } = useParams()
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');*/
     const API_LINK = `http://localhost:8080/api/users/${uid}`
+    //const LINK_TOKEN = `http://localhost:8080/api/users/${token}`
     axios.defaults.withCredentials = true;
 
     const functionRestore = async (data) => {
         try {
-            let cookie = document.cookie.split("; ")
-            cookie = cookie.find(each => each.split("=")[0] === "emailToken")
-            if (cookie) {
-                const modify = { password: data.newPassword }
-                const res = await axios.put(API_LINK, modify, cookie);
-                if (res.data.statusCode === 201) {
-                    Swal.fire({
-                        title: `Password updated`,
-                        icon: "success",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: "OK",
-                    }).then((result) => {
-                        if (result.isConfirmed || !result.isConfirmed) {
-                            location.replace("/login")
-                        }
-                    })
-                } else {
-                    Swal.fire({
-                        title: res.data.message,
-                        icon: "error",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: "OK",
-                    })
-                }
-            } else {
+            // let cookie = document.cookie.split("; ")
+            // cookie = cookie.find(each => each.split("=")[0] === "token")
+            // if (cookie) {
+            const modify = { password: data.newPassword }
+            const res = await axios.put(API_LINK, modify);
+            if (res.data.statusCode === 201) {
                 Swal.fire({
-                    title: "Link expired",
-                    icon: "error",
+                    title: `Password updated`,
+                    icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK",
                 }).then((result) => {
                     if (result.isConfirmed || !result.isConfirmed) {
-                        location.replace("/")
+                        location.replace("/login")
                     }
                 })
+            } else {
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                })
             }
+            // } else {
+            //     Swal.fire({
+            //         title: "Link expired",
+            //         icon: "error",
+            //         confirmButtonColor: "#3085d6",
+            //         confirmButtonText: "OK",
+            //     }).then((result) => {
+            //         if (result.isConfirmed || !result.isConfirmed) {
+            //             //location.replace("/")
+            //         }
+            //     })
+            // }
         } catch (error) {
             console.log(error);
         }
