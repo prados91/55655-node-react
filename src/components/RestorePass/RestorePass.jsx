@@ -12,8 +12,9 @@ const RestorePass = () => {
     const functionRecovery = async (data) => {
         try {
             const res = await axios.post(API_LINK, data);
-
-            if (res.data.message === "Not Found") {
+            console.log(res)
+            // if (res.data.message === "Not Found") {
+            if (res.data.statusCode !== 200) {
                 Swal.fire({
                     title: `${res.data.message} \n Please, check your information`,
                     icon: "error",
