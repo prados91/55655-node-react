@@ -7,8 +7,8 @@ const RestoreInfo = ({ uid }) => {
         const { uid } = useParams()
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');*/
-    const API_LINK = `http://localhost:8080/api/users/${uid}`
-    //const LINK_TOKEN = `http://localhost:8080/api/users/${token}`
+    const API_LINK = `https://serverapp-atp.up.railway.app/api/users/${uid}`
+    //const LINK_TOKEN = `https://serverapp-atp.up.railway.app/api/users/${token}`
     axios.defaults.withCredentials = true;
 
     const functionRestore = async (data) => {
