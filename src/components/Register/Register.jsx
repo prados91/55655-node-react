@@ -12,7 +12,7 @@ const Register = () => {
     const [load, setLoad] = useState(false);
     const [register, setRegister] = useState(false)
 
-    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions"
+    const API_LINK = "http://localhost:8080/api/sessions"
 
     const functionRegister = async (data) => {
         try {

@@ -10,19 +10,21 @@ const Login = () => {
 
     const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
 
-    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
-    const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+    const API_LINK = "http://localhost:8080/api/sessions/login"
+    const API_USER = "http://localhost:8080/api/sessions/me"
     axios.defaults.withCredentials = true;
 
     const functionLogIn = async (data) => {
         try {
             const res = await axios.post(API_LINK, data);
+            console.log(res)
             if (res.data.statusCode === 200) {
                 let cookie = document.cookie.split("; ")
                 cookie = cookie.find(each => each.split("=")[0] === "token")
                 const response = await axios.post(API_USER, cookie)
                 const userRole = response.data.response.role
                 const userName = response.data.response.name
+                console.log(userRole)
                 setUserName(userName)
                 switch (userRole) {
                     case "ADMIN":
