@@ -8,6 +8,7 @@ import Filter from '../Filter/Filter'
 
 import { ProductContext } from '../../context/ProductContext'
 
+
 import './ItemListContainer.css'
 const ItemListContainer = ({ greeting }) => {
 
@@ -21,7 +22,9 @@ const ItemListContainer = ({ greeting }) => {
 
     const { home, setHome } = useContext(ProductContext)
 
-    const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
+    //const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
+    const API_LINK = `https://serverapp-atp.up.railway.app/api/products/?title=${title}&page=${page}`
+
 
     useEffect(() => {
         setLoad(true)
