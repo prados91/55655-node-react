@@ -41,7 +41,8 @@ const NavBar = () => {
 
     const submintLogOut = async () => {
         hideMenu()
-        const API_LINK = "http://localhost:8080/api/sessions/signout"
+        //const API_LINK = "http://localhost:8080/api/sessions/signout"
+        const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/signout"
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
 
