@@ -41,12 +41,13 @@ const NavBar = () => {
 
     const submintLogOut = async () => {
         hideMenu()
-        //const API_LINK = "http://localhost:8080/api/sessions/signout"
+        //const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/signout"
         const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/signout"
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
 
         const res = await axios.post(API_LINK, role, cookie);
+        console.log(res)
         if (res.data.statusCode === 200) {
             setAdmin(false)
             setUser(false)
@@ -91,13 +92,13 @@ const NavBar = () => {
                 <li id="homeLink" onClick={hideMenu}>
                     <Link to="/">Home</Link>
                 </li>
-                {admin || prem && <li id="formLink" onClick={hideMenu}>
+                {(admin || prem) && <li id="formLink" onClick={hideMenu}>
                     <Link to="/form">Form</Link>
                 </li>}
-                {user || prem && <li id="cartLink" onClick={hideMenu}>
+                {(user || prem) && <li id="cartLink" onClick={hideMenu}>
                     <Link to="/cart">{userName} Cart</Link>
                 </li>}
-                {!admin && !user && !prem && <li id="registerLink" onClick={hideMenu}>
+                {(!admin && !user && !prem) && <li id="registerLink" onClick={hideMenu}>
                     <Link to="/register">Register</Link>
                 </li>}
                 {role === "" ?

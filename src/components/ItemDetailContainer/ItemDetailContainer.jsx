@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     const [load, setLoad] = useState(true)
     const { pid } = useParams()
 
-    //const API_LINK = "http://localhost:8080/api/products"
+    //const API_LINK = "https://serverapp-atp.up.railway.app/api/products"
     const API_LINK ="https://serverapp-atp.up.railway.app/api/products"
 
     useEffect(() => {

@@ -10,10 +10,12 @@ const Login = () => {
 
     const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
 
-    //const API_LINK = "http://localhost:8080/api/sessions/login"
     const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
-    //const API_USER = "http://localhost:8080/api/sessions/me"
     const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+   // const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
+    //const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+
+
     axios.defaults.withCredentials = true;
 
     const functionLogIn = async (data) => {
@@ -24,9 +26,9 @@ const Login = () => {
                 let cookie = document.cookie.split("; ")
                 cookie = cookie.find(each => each.split("=")[0] === "token")
                 const response = await axios.post(API_USER, cookie)
+                console.log(response)
                 const userRole = response.data.response.role
                 const userName = response.data.response.name
-                console.log(userRole)
                 setUserName(userName)
                 switch (userRole) {
                     case "ADMIN":
@@ -78,11 +80,9 @@ const Login = () => {
         <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly form__container">
             <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
                 {(!admin && !user && !prem) ? <h2 className="mt-5 mb-2 text-center">LOG IN!</h2> : <h2 className="mt-5 mb-2 text-center">ALREADY LOGED</h2>}
-
                 <div style={{ maxWidth: '720px' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
                     <Formik
                         initialValues={{ email: "", password: "" }}
-
                         validate={(values) => {
                             const errors = {};
                             if (!values.password) {
@@ -95,7 +95,6 @@ const Login = () => {
                             }
                             return errors;
                         }}
-
                         onSubmit={(values, { setSubmitting }) => {
                             if (values.email != "" && values.password != "") {
                                 functionLogIn(values)
@@ -103,7 +102,6 @@ const Login = () => {
                             } else {
                                 console.log("error")
                             }
-
                         }}
                     >
                         {({
@@ -118,7 +116,6 @@ const Login = () => {
                             <form onSubmit={handleSubmit} className='register__container--form'>
                                 <input className="register__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Correo electrónico" />{errors.email && touched.email && errors.email}
                                 <input className="register__input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" />{errors.password && touched.password && errors.password}
-
                                 {(!admin && !user && !prem) &&
                                     <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Log In</button>
                                 }
@@ -139,7 +136,6 @@ const Login = () => {
         </main>
     )
 }
-
 export default Login
 
 

@@ -7,7 +7,7 @@ import './RestorePass.css'
 const RestorePass = () => {
 
     axios.defaults.withCredentials = true;
-    //const API_LINK = "http://localhost:8080/api/sessions/recovery"
+    //const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/recovery"
     const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/recovery"
 
 
