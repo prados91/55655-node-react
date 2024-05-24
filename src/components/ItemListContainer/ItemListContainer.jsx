@@ -7,7 +7,6 @@ import PageCount from '../PageCount/PageCount'
 import Filter from '../Filter/Filter'
 
 import { ProductContext } from '../../context/ProductContext'
-import { UserContext } from '../../context/UserContext'
 
 
 import './ItemListContainer.css'
