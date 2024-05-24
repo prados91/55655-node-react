@@ -3,6 +3,8 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserProvider } from './context/UserContext.jsx';
 
+import './index.css'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <UserProvider>
         <App />

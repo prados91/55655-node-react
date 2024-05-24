@@ -9,7 +9,7 @@ import Register from './components/Register/Register';
 import { CartProvider } from './context/CartContext';
 import Login from './components/Login/Login';
 import ProductForm from './components/ProductForm/ProductForm';
-
+import LoginForm from "./components/Login/LoginForm";
 
 import './App.css'
 import ProductProvider from './context/ProductContext';
@@ -30,6 +30,8 @@ function App() {
                         <Route path="/form" element={<ProductForm />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/loginForm" element={<LoginForm />} />
+
                         <Route path="/restore" element={<RestorePass />} />
                         {/* <Route path="/restoreInfo/:uid" element={<RestoreInfo />} /> */}
                         <Route path="/restoreInfo" element={<RestoreContainer />} />

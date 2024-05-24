@@ -5,6 +5,7 @@ import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 
 import Swal from 'sweetalert2';
+import './Login.css'
 
 const Login = () => {
 
@@ -12,7 +13,7 @@ const Login = () => {
 
     const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
     const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
-   // const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
+    // const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
     //const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
 
 
@@ -77,7 +78,7 @@ const Login = () => {
 
 
     return (
-        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly form__container">
+        <main className=" flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly form__container">
             <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
                 {(!admin && !user && !prem) ? <h2 className="mt-5 mb-2 text-center">LOG IN!</h2> : <h2 className="mt-5 mb-2 text-center">ALREADY LOGED</h2>}
                 <div style={{ maxWidth: '720px' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
@@ -122,7 +123,7 @@ const Login = () => {
                                 {(!admin && !user && !prem) &&
                                     // <Link to="/restore" className="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Forgot your password?</Link>
                                     <Link
-                                        className=" btn_restore"
+                                        className="btn_restore"
                                         to="/restore"
                                     >
                                         Forgot your password?
@@ -133,6 +134,7 @@ const Login = () => {
                     </Formik>
                 </div>
             </section>
+
         </main>
     )
 }
