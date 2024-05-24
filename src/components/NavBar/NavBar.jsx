@@ -126,25 +126,24 @@ const NavBar = () => {
                 <span className="bar"></span>
                 <span className="bar"></span>
             </div>
-
             <ul className="NavbarLinks">
-                <li id="homeLink" onClick={hideMenu}>
+                <li onClick={hideMenu}>
                     <Link to="/">Home</Link>
                 </li>
-                {(admin || prem) && <li id="formLink" onClick={hideMenu}>
+                {(admin || prem) && <li onClick={hideMenu}>
                     <Link to="/form">Form</Link>
                 </li>}
-                {(user || prem) && <li id="cartLink" onClick={hideMenu}>
+                {(user || prem) && <li onClick={hideMenu}>
                     <Link to="/cart">My Cart</Link>
                 </li>}
-                {(!admin && !user && !prem) && <li id="registerLink" onClick={hideMenu}>
+                {(!admin && !user && !prem) && <li onClick={hideMenu}>
                     <Link to="/register">Register</Link>
                 </li>}
                 {role === "" ?
-                    <li id="loginLink" onClick={hideMenu}>
-                        <Link to="/login"> Login</Link>
+                    <li onClick={hideMenu}>
+                        <Link to="/loginForm">Login</Link>
                     </li> :
-                    <li id="signOutLink">
+                    <li >
                         <Link onClick={submitLogOut}>SignOut</Link>
                     </li>
                 }

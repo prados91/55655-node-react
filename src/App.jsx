@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from './context/CartContext';
+import { ProductProvider } from './context/ProductContext';
 
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
@@ -6,17 +8,14 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import Footer from './components/Footer/Footer';
 import CartContainer from './components/CartContainer/CartContainer';
 import Register from './components/Register/Register';
-import { CartProvider } from './context/CartContext';
-import Login from './components/Login/Login';
 import ProductForm from './components/ProductForm/ProductForm';
-import LoginForm from "./components/Login/LoginForm";
-
-import './App.css'
-import ProductProvider from './context/ProductContext';
+import LoginForm from "./components/LoginForm/LoginForm";
 import RestorePass from './components/RestorePass/RestorePass';
-// import RestoreInfo from "./components/RestoreInfo/RestoreInfo";
 import RestoreContainer from "./components/RestoreContainer/RestoreContainer";
 import NotFound from "./components/NotFound/NotFound";
+import UserProfile from "./components/UserProfile/UserProfile";
+
+import './App.css'
 function App() {
 
     return (
@@ -27,19 +26,19 @@ function App() {
                     <Routes>
                         <Route exact path='/' element={<ItemListContainer />} />
                         <Route exact path='/products/:pid' element={<ItemDetailContainer />} />
-                        <Route path="/cart" element={<CartContainer />} />
-                        <Route path="/form" element={<ProductForm />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<LoginForm />} />
-                        <Route path="/restore" element={<RestorePass />} />
-                        <Route path="/restoreInfo" element={<RestoreContainer />} />
+                        <Route exact path="/cart" element={<CartContainer />} />
+                        <Route exact path="/form" element={<ProductForm />} />
+                        <Route exact path="/register" element={<Register />} />
+                        <Route exact path="/loginForm" element={<LoginForm />} />
+                        <Route exact path="/restore" element={<RestorePass />} />
+                        <Route exact path="/restoreInfo" element={<RestoreContainer />} />
+                        <Route exact path="/user/:uid" element={<UserProfile />} />
                         <Route exact path='*' element={<NotFound />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>
             </ProductProvider>
         </CartProvider>
-
     )
 }
 
