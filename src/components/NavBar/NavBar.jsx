@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, } from "react-router-dom";
 import navLogo1 from '../../images/logoBasketStoreWhite.svg'
 import axios from "axios";
 import Swal from 'sweetalert2';
 
-import { UserContext } from "../../context/UserContext";
+//import { UserContext } from "../../context/UserContext";
 import { ProductContext } from "../../context/ProductContext";
 
 import './NavBar.css'
@@ -14,11 +14,49 @@ const NavBar = () => {
     axios.defaults.withCredentials = true;
 
     const [navbarblur, setnavbarblur] = useState(false);
+    const [user, setUser] = useState(false)
+    const [admin, setAdmin] = useState(false)
+    const [prem, setPrem] = useState(false)
+    const [role, setRole] = useState("")
 
 
-    const { user, setUser, admin, setAdmin, role, setRole, prem, setPrem, userName, setUserName } = useContext(UserContext)
+    //const { verifyUser } = useContext(UserContext)
     const { setHome } = useContext(ProductContext)
 
+    const verify = async () => {
+        let cookie = document.cookie.split("; ")
+        cookie = cookie.find(each => each.split("=")[0] === "token")
+        const res = await axios.post("http://localhost:8080/api/sessions/me", cookie)
+        const user = res.data.response
+        console.log(user)
+        if (user) {
+            if (user.role === "ADMIN") {
+                setAdmin(true)
+                setRole("ADMIN")
+            } else {
+                if (user.role === "PREM") {
+                    setPrem(true)
+                    setRole("PREM")
+                } else {
+                    if (user.role === "USER") {
+                        setUser(true)
+                        setRole("USER")
+                    }
+                    else {
+                        setAdmin(false)
+                        setPrem(false)
+                        setUser(false)
+                        setRole("")
+                    }
+                }
+            }
+        } else {
+            setAdmin(false)
+            setPrem(false)
+            setUser(false)
+            setRole("")
+        }
+    }
 
     const showMenu = () => {
         var bar = document.getElementsByClassName("bar");
@@ -39,13 +77,11 @@ const NavBar = () => {
         ham[0].classList.remove("showNavbar");
     };
 
-    const submintLogOut = async () => {
+    const submitLogOut = async () => {
         hideMenu()
-        //const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/signout"
-        const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/signout"
+        const API_LINK = "http://localhost:8080/api/sessions/signout"
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
-
         const res = await axios.post(API_LINK, role, cookie);
         console.log(res)
         if (res.data.statusCode === 200) {
@@ -53,7 +89,7 @@ const NavBar = () => {
             setUser(false)
             setPrem(false)
             setRole("")
-            setUserName("")
+            localStorage.removeItem("token");
             Swal.fire({
                 title: "GOOD BYE!",
                 icon: "success",
@@ -61,7 +97,6 @@ const NavBar = () => {
                 confirmButtonText: "OK",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    localStorage.removeItem("token");
                     location.replace("/");
                 }
             });
@@ -76,6 +111,10 @@ const NavBar = () => {
         }
     }
     window.addEventListener("scroll", scrollHandler);
+
+    useEffect(() => {
+        verify()
+    }, [user, admin, prem])
     return (
         <nav className={navbarblur ? "Navbar blur" : "Navbar"}>
             <Link to="/" onClick={() => setHome(true)}>
@@ -96,7 +135,7 @@ const NavBar = () => {
                     <Link to="/form">Form</Link>
                 </li>}
                 {(user || prem) && <li id="cartLink" onClick={hideMenu}>
-                    <Link to="/cart">{userName} Cart</Link>
+                    <Link to="/cart">My Cart</Link>
                 </li>}
                 {(!admin && !user && !prem) && <li id="registerLink" onClick={hideMenu}>
                     <Link to="/register">Register</Link>
@@ -106,7 +145,7 @@ const NavBar = () => {
                         <Link to="/login"> Login</Link>
                     </li> :
                     <li id="signOutLink">
-                        <Link onClick={submintLogOut}>SignOut</Link>
+                        <Link onClick={submitLogOut}>SignOut</Link>
                     </li>
                 }
 

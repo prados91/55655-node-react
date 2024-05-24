@@ -22,7 +22,7 @@ const ItemListContainer = () => {
     const [title, setTitle] = useState("")
     const { home, setHome } = useContext(ProductContext)
 
-    const API_LINK = `https://serverapp-atp.up.railway.app/api/products/?title=${title}&page=${page}`
+    const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
 
     const fetchProducts = async () => {
         setLoad(true);
@@ -44,6 +44,7 @@ const ItemListContainer = () => {
             setHome(false);
         }
         fetchProducts();
+
     }, [home, page, title]);
 
     return (

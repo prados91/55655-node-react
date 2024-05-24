@@ -1,6 +1,6 @@
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from "react-icons/fa"
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
@@ -11,56 +11,31 @@ import Loading from '../Loading/Loading';
 
 const LoginForm = () => {
 
-    const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
+    const { verifyUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(false)
-    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
-    const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+    const [user, setUser] = useState(false)
+    const [admin, setAdmin] = useState(false)
+    const [prem, setPrem] = useState(false)
+    const [role, setRole] = useState("")
+    const API_LINK = "http://localhost:8080/api/sessions/login"
     axios.defaults.withCredentials = true;
 
     const functionLogIn = async (data) => {
+        setRole("")
         try {
             setIsLoading(true)
             const res = await axios.post(API_LINK, data);
             if (res.data.statusCode === 200) {
-                let cookie = document.cookie.split("; ")
-                cookie = cookie.find(each => each.split("=")[0] === "token")
-                const response = await axios.post(API_USER, cookie)
-                const userRole = response.data.response.role
-                const userName = response.data.response.name
-                setUserName(userName)
-                switch (userRole) {
-                    case "ADMIN":
-                        setAdmin(true);
-                        setUser(false);
-                        setPrem(false);
-                        setRole("ADMIN");
-                        break;
-                    case "USER":
-                        setAdmin(false);
-                        setUser(true);
-                        setPrem(false);
-                        setRole("USER");
-                        break;
-                    case "PREM":
-                        setAdmin(false);
-                        setUser(false);
-                        setPrem(true);
-                        setRole("PREM");
-                        break;
-                    default:
-                        setUser(false);
-                        setAdmin(false);
-                        setPrem(false);
-                        setRole("");
-                }
+                const { role, name } = await verifyUser()
+                setRole(role)
                 Swal.fire({
-                    title: `${userName} WELCOME TO THE STORE!`,
+                    title: `${name} WELCOME TO THE STORE!`,
                     icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK",
                 }).then(() => {
                     setIsLoading(false)
-                    redirect("/")
+                    location.replace("/")
                 });
             } else {
                 Swal.fire({
@@ -85,6 +60,34 @@ const LoginForm = () => {
             });
         }
     };
+
+    useEffect(() => {
+        switch (role) {
+            case "ADMIN":
+                setAdmin(true);
+                setUser(false);
+                setPrem(false);
+                setRole("ADMIN");
+                break;
+            case "USER":
+                setAdmin(false);
+                setUser(true);
+                setPrem(false);
+                setRole("USER");
+                break;
+            case "PREM":
+                setAdmin(false);
+                setUser(false);
+                setPrem(true);
+                setRole("PREM");
+                break;
+            default:
+                setUser(false);
+                setAdmin(false);
+                setPrem(false);
+                setRole("");
+        }
+    }, [role])
 
     return (
         <>

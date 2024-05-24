@@ -5,16 +5,15 @@ import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 
 import Swal from 'sweetalert2';
-import './Login.css'
 
 const Login = () => {
 
     const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
 
-    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
-    const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
-    // const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
-    //const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+    const API_LINK = "http://localhost:8080/api/sessions/login"
+    const API_USER = "http://localhost:8080/api/sessions/me"
+    // const API_LINK = "http://localhost:8080/api/sessions/login"
+    //const API_USER = "http://localhost:8080/api/sessions/me"
 
 
     axios.defaults.withCredentials = true;
