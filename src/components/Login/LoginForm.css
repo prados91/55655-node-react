@@ -1,5 +1,4 @@
 .wrapper_container {
-    /*width: 580px;*/
     min-height: calc(100vh - 35px);
     display: flex;
     justify-content: center;
@@ -9,7 +8,6 @@
 }
 
 .wrapper {
-    width: 50%;
     margin-right: auto;
     margin-left: auto;
     background-color: #FFF;
@@ -23,12 +21,13 @@
 }
 
 .form-container {
-    width: 100%;
+    width: 95%;
 }
 
 .wrapper h1 {
     font-size: 36px;
     text-align: center;
+    text-decoration: underline;
 }
 
 .wrapper .input-box {
@@ -68,7 +67,8 @@
     display: flex;
     justify-content: space-between;
     font-size: 14.5px;
-    margin: -15px 0 15px;
+    /*padding-top: 15px;
+    padding-bottom: 15px;*/
 }
 
 .remember-forgot label input {
@@ -87,7 +87,7 @@
 
 .wrapper .register-link {
     font-size: 14.5px;
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
 }
 
@@ -99,41 +99,4 @@
 
 .register-link p a:hover {
     text-decoration: underline;
-}
-
-
-
-@media (min-width: 576px) {
-    .wrapper {
-        max-width: 540px;
-        padding: 20px;
-    }
-}
-
-@media (min-width: 768px) {
-    .wrapper {
-        max-width: 720px;
-        padding: 25px;
-    }
-}
-
-@media (min-width: 992px) {
-    .wrapper {
-        max-width: 960px;
-        padding: 30px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .wrapper {
-        max-width: 1140px;
-        padding: 35px;
-    }
-}
-
-@media (min-width: 1400px) {
-    .wrapper {
-        max-width: 1320px;
-        padding: 40px;
-    }
 }

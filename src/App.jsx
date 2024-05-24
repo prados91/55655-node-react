@@ -29,8 +29,8 @@ function App() {
                         <Route path="/cart" element={<CartContainer />} />
                         <Route path="/form" element={<ProductForm />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/loginForm" element={<LoginForm />} />
+                        {/* <Route path="/login" element={<Login />} /> */}
+                        <Route path="/login" element={<LoginForm />} />
 
                         <Route path="/restore" element={<RestorePass />} />
                         {/* <Route path="/restoreInfo/:uid" element={<RestoreInfo />} /> */}
