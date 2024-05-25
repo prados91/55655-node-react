@@ -18,6 +18,7 @@ const NavBar = () => {
     const [admin, setAdmin] = useState(false)
     const [prem, setPrem] = useState(false)
     const [role, setRole] = useState("")
+    const [uid, setUserId] = useState("")
 
 
     //const { verifyUser } = useContext(UserContext)
@@ -28,8 +29,8 @@ const NavBar = () => {
         cookie = cookie.find(each => each.split("=")[0] === "token")
         const res = await axios.post("http://localhost:8080/api/sessions/me", cookie)
         const user = res.data.response
-        console.log(user)
         if (user) {
+            setUserId(user._id)
             if (user.role === "ADMIN") {
                 setAdmin(true)
                 setRole("ADMIN")
@@ -47,6 +48,7 @@ const NavBar = () => {
                         setPrem(false)
                         setUser(false)
                         setRole("")
+                        setUserId("")
                     }
                 }
             }
@@ -55,6 +57,7 @@ const NavBar = () => {
             setPrem(false)
             setUser(false)
             setRole("")
+            setUserId("")
         }
     }
 
@@ -64,7 +67,6 @@ const NavBar = () => {
         bar[0].classList.toggle("barOne");
         bar[1].classList.toggle("barTwo");
         bar[2].classList.toggle("barThree");
-
         ham[0].classList.toggle("showNavbar");
     };
 
@@ -138,6 +140,9 @@ const NavBar = () => {
                 </li>}
                 {(!admin && !user && !prem) && <li onClick={hideMenu}>
                     <Link to="/register">Register</Link>
+                </li>}
+                {(admin || prem || user) && <li onClick={hideMenu}>
+                    <Link to={`/user/${uid}`}>Profile</Link>
                 </li>}
                 {role === "" ?
                     <li onClick={hideMenu}>
