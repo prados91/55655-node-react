@@ -1,10 +1,38 @@
-.gradient-custom {
-    /* fallback for old browsers */
-    background: #f6d365;
+.userProfile__container {
+    min-height: calc(100vh - 35px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+.userProfile__columns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 1.5rem;
+    background-color: #fff;
 
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+.userProfile__column--photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.userProfile__column--info {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+
+}
+
+.userProfile_button {
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }

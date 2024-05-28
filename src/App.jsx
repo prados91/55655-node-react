@@ -14,6 +14,7 @@ import RestorePass from './components/RestorePass/RestorePass';
 import RestoreContainer from "./components/RestoreContainer/RestoreContainer";
 import NotFound from "./components/NotFound/NotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 import './App.css'
 function App() {
@@ -33,6 +34,7 @@ function App() {
                         <Route exact path="/restore" element={<RestorePass />} />
                         <Route exact path="/restoreInfo" element={<RestoreContainer />} />
                         <Route exact path="/user/:uid" element={<UserProfile />} />
+                        <Route exact path="/edit-user/:uid" element={<EditProfile />} />
                         <Route exact path='*' element={<NotFound />} />
                     </Routes>
                     <Footer />
