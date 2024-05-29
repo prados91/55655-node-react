@@ -3,21 +3,13 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const RestoreInfo = ({ uid }) => {
-    /*
-        const { uid } = useParams()
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');*/
-    //const API_LINK = `http://localhost:8080/api/users/${uid}`
+
     const API_LINK = `http://localhost:8080/api/users/${uid}`
 
-    //const LINK_TOKEN = `http://localhost:8080/api/users/${token}`
     axios.defaults.withCredentials = true;
 
     const functionRestore = async (data) => {
         try {
-            // let cookie = document.cookie.split("; ")
-            // cookie = cookie.find(each => each.split("=")[0] === "token")
-            // if (cookie) {
             const modify = { password: data.newPassword }
             const res = await axios.put(API_LINK, modify);
             if (res.data.statusCode === 201) {
