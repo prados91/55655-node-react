@@ -54,8 +54,8 @@ const UserProfile = () => {
             <div className="userProfile__container container" >
                 <div className="row userProfile__columns">
                     <div className=" col-md-4 col-sm-4 userProfile__column--photo m-0 p-0">
-                        <div>
-                            <img src={user.photo} alt={user.name} className="img-fluid rounded-circle p-2" />
+                        <div className='profile-img'>
+                            <img src={user.photo} alt={user.name} className="img-fluid " />
                         </div>
                         <div>
                             <p className='card-text p-2'>{user.name}</p>

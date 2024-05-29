@@ -21,18 +21,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .userProfile__column--info {
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-
+    justify-content: space-around;
 }
 
 .userProfile_button {
     display: flex;
     justify-content: center;
     align-items: end;
+}
+
+.profile-img {
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (max-width: 575px) {
+    .profile-img {
+        width: 50%;
+        height: 50%;
+    }
+    .userProfile__container{
+        padding-top: 20px;
+    }
 }
