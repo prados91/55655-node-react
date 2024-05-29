@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext'
@@ -15,8 +14,7 @@ const CartContainer = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [cartEmpty, setCartEmpty] = useState(true);
 
-    const { cart, clearItemsFromCart } = useContext(CartContext);
-
+    const { cart, readCart, deleteOrder } = useContext(CartContext);
 
     const toasty = () => {
         toast.error('Se eliminaron todos los productos del carrito', {
@@ -32,14 +30,17 @@ const CartContainer = () => {
     }
 
     const callFunction = () => {
-        clearItemsFromCart();
         toasty();
     }
 
     useEffect(() => {
-        setTotalPrice(cart.reduce((acum, item) => acum + item.quantity * item.price, 0));
+        setTotalPrice(cart.reduce((acum, item) => acum + item.quantity * item.product_id.price, 0));
         setCartEmpty(cart.length === 0);
     }, [cart]);
+
+    useEffect(() => {
+        readCart()
+    }, []);
 
     return (
         <div className="cartContainer">
@@ -48,7 +49,7 @@ const CartContainer = () => {
 
                 <hr />
                 <div className="cartContainer__products">
-                    {cartEmpty ? <div>El carrito de compras está vacio!</div> : <CartItem />}
+                    {cartEmpty ? <div>El carrito de compras está vacio!</div> : <CartItem cart={cart} deleteOrder={deleteOrder} />}
                 </div>
                 <hr />
                 <p className="cartContainer__totalPrice">
