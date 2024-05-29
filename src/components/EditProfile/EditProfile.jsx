@@ -87,7 +87,7 @@ const EditProfile = () => {
                                 errors.email = "Ingrese un correo válido";
                             }
                             if (!values.photo) {
-                                errors.photo = "Ingrese una imagen válida";
+                                errors.photo = "Ingrese una URL válida";
                             }
                             return errors;
                         }}
@@ -121,7 +121,7 @@ const EditProfile = () => {
                                     <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" required />{errors.email && touched.email && errors.email}
                                 </div>
                                 <div className='formInput-box'>
-                                    <input type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="Photo" required />{errors.photo && touched.photo && errors.photo}
+                                    <input type="text" name="URL photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" required />{errors.photo && touched.photo && errors.photo}
                                 </div>
                                 <div className='editForm-buttons'>
                                     <button type="submit" disabled={isSubmitting} className="w-20 btn btn-dark" >Confirm new data</button>

@@ -146,7 +146,7 @@ const NavBar = () => {
                 </li>}
                 {role === "" ?
                     <li onClick={hideMenu}>
-                        <Link to="/loginForm">Login</Link>
+                        <Link to="/login">Login</Link>
                     </li> :
                     <li >
                         <Link onClick={submitLogOut}>SignOut</Link>

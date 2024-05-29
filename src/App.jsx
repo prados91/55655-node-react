@@ -30,7 +30,7 @@ function App() {
                         <Route exact path="/cart" element={<CartContainer />} />
                         <Route exact path="/form" element={<ProductForm />} />
                         <Route exact path="/register" element={<Register />} />
-                        <Route exact path="/loginForm" element={<LoginForm />} />
+                        <Route exact path="/login" element={<LoginForm />} />
                         <Route exact path="/restore" element={<RestorePass />} />
                         <Route exact path="/restoreInfo" element={<RestoreContainer />} />
                         <Route exact path="/user/:uid" element={<UserProfile />} />

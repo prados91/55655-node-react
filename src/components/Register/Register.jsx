@@ -1,5 +1,6 @@
 
-import { React, useState } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { Formik } from "formik";
 import axios from 'axios';
 import Loading from '../Loading/Loading';
@@ -11,8 +12,6 @@ const Register = () => {
 
     const [load, setLoad] = useState(false);
     const [register, setRegister] = useState(false)
-
-    //const API_LINK = "http://localhost:8080/api/sessions"
     const API_LINK = "http://localhost:8080/api/sessions"
 
 
@@ -55,117 +54,128 @@ const Register = () => {
     }
     return (
 
-        <main className="flex-grow-1 d-flex w-100 flex-wrap justify-content-evenly register__container">
-            <section className="w-50 mb-4 d-flex flex-column justify-content-start align-items-center" style={{ minWidth: '720px' }}>
-                {!load && !register && (
-                    <>
-                        <h2 className="mt-5 text-center">REGISTER!</h2>
-                        <div style={{ maxWidth: '720px' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
-                            <Formik
-                                initialValues={{ email: "", password: "", name: "", lastname: "", photo: "", age: "" }}
-
-                                validate={(values) => {
-                                    const errors = {};
-                                    if (!values.password) {
-                                        errors.password = "Ingrese contraseña";
-                                    }
-                                    if (!values.email) {
-                                        errors.email = "Ingrese un correo válido";
-                                    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                                        errors.email = "Ingrese un correo válido";
-                                    }
-                                    if (!values.name) {
-                                        errors.name = "Ingrese nombre";
-                                    }
-                                    return errors;
-                                }}
-
-                                onSubmit={(values, { setSubmitting }) => {
-                                    if (values.email != "" && values.password != "") {
-                                        functionRegister(values)
-                                        setSubmitting(false);
-                                    } else {
-                                        console.log("error")
-                                    }
-
-                                }}
-                            >
-                                {({
-                                    values,
-                                    errors,
-                                    touched,
-                                    handleChange,
-                                    handleBlur,
-                                    handleSubmit,
-                                    isSubmitting,
-                                }) => (
-                                    <form onSubmit={handleSubmit} className='register__container--form'>
-                                        <input className="register__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
-                                        <input className="register__input" type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" />{errors.password && touched.password}
-                                        <input className="register__input" type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" />{errors.name && touched.name}
-                                        <input className="register__input" type="text" name="lastname" onChange={handleChange} onBlur={handleBlur} value={values.lastname} placeholder="LastName" />
-                                        <input className="register__input" type="number" name="age" onChange={handleChange} onBlur={handleBlur} value={values.age} placeholder="Age" />
-                                        <input className="register__input" type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" />
-                                        <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Register!</button>
-                                        <button id="google" type="button" className="w-100 btn btn-dark mt-3">Google!</button>
-                                        <button id="github" type="button" className="w-100 btn btn-dark mt-3">Github!</button>
-                                    </form>
-                                )}
-                            </Formik>
-                        </div>
-                    </>
-                )}
-                {load && !register && <Loading />}
-                {!load && register && (
-                    <>
-                        <h2 className="mt-5 text-center">VERIFY USER!</h2>
-                        <div style={{ maxWidth: '500px' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
-                            <Formik
-                                initialValues={{ email: "", verifiedCode: "" }}
-
-                                validate={(values) => {
-                                    const errors = {};
-                                    if (!values.verifiedCode) {
-                                        errors.verifiedCode = "Ingrese el código de verificación";
-                                    }
-                                    if (!values.email) {
-                                        errors.email = "Ingrese un correo válido";
-                                    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-                                        errors.email = "Ingrese un correo válido";
-                                    }
-                                    return errors;
-                                }}
-
-                                onSubmit={(values, { setSubmitting }) => {
-                                    if (values.email != "" && values.verifiedCode != "") {
-                                        functionVerify(values)
-                                        setSubmitting(false);
-                                    } else {
-                                        console.log("error")
-                                    }
-                                }}
-                            >
-                                {({
-                                    values,
-                                    errors,
-                                    touched,
-                                    handleChange,
-                                    handleBlur,
-                                    handleSubmit,
-                                    isSubmitting,
-                                }) => (
-                                    <form onSubmit={handleSubmit} className='register__container--form'>
-                                        <input className="register__input" type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
-                                        <input className="register__input" type="text" name="verifiedCode" onChange={handleChange} onBlur={handleBlur} value={values.verifiedCode} placeholder="Verify Code" />{errors.verifiedCode && touched.verifiedCode}
-                                        <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark mt-3">Verify!</button>
-                                    </form>
-                                )}
-                            </Formik>
-                        </div>
-                    </>
-                )}
-            </section>
-        </main >
+        <>
+            {!load && !register && (
+                <div className='container-fluid register-container'>
+                    <div style={{ maxWidth: '420px' }} className='container register'>
+                        <h1>Register!</h1>
+                        <Formik
+                            initialValues={{ email: "", password: "", name: "", lastname: "", photo: "" }}
+                            validate={(values) => {
+                                const errors = {};
+                                if (!values.password) {
+                                    errors.password = "Ingrese contraseña";
+                                }
+                                if (!values.email) {
+                                    errors.email = "Ingrese un correo válido";
+                                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                                    errors.email = "Ingrese un correo válido";
+                                }
+                                if (!values.name) {
+                                    errors.name = "Ingrese su nombre";
+                                }
+                                if (!values.lastname) {
+                                    errors.lastname = "Ingrese su apellido";
+                                }
+                                return errors;
+                            }}
+                            onSubmit={(values, { setSubmitting }) => {
+                                if (values.email != "" && values.password != "") {
+                                    functionRegister(values)
+                                    setSubmitting(false);
+                                } else {
+                                    console.log("error")
+                                }
+                            }}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                isSubmitting,
+                            }) => (
+                                <form onSubmit={handleSubmit} className='registerForm-container'>
+                                    <div className='registerInput-box'>
+                                        <input type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" required />{errors.name && touched.name && errors.name}
+                                    </div>
+                                    <div className='registerInput-box'>
+                                        <input type="text" name="lastname" onChange={handleChange} onBlur={handleBlur} value={values.lastname} placeholder="Last name" required />{errors.lastname && touched.lastname && errors.lastname}
+                                    </div>
+                                    <div className='registerInput-box'>
+                                        <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" required />{errors.email && touched.email && errors.email}
+                                    </div>
+                                    <div className='registerInput-box'>
+                                        <input type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" required />{errors.photo && touched.photo && errors.photo}
+                                    </div>
+                                    <div className='registerForm-buttons'>
+                                        <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark">Register!</button>
+                                        <div className="register-link">
+                                            <p>Do you have an account? <Link to="/login" className='btn_restore'>Log in!</Link></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
+                </div >
+            )}
+            {load && !register && <Loading />}
+            {!load && register && (
+                <div className='container-fluid register-container'>
+                    <div style={{ maxWidth: '420px' }} className='container register'>
+                        <h1>VERIFY USER!!</h1>
+                        <Formik
+                            initialValues={{ email: "", verifiedCode: "" }}
+                            validate={(values) => {
+                                const errors = {};
+                                if (!values.verifiedCode) {
+                                    errors.verifiedCode = "Ingrese el código de verificación";
+                                }
+                                if (!values.email) {
+                                    errors.email = "Ingrese un correo válido";
+                                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                                    errors.email = "Ingrese un correo válido";
+                                }
+                                return errors;
+                            }}
+                            onSubmit={(values, { setSubmitting }) => {
+                                if (values.email != "" && values.verifiedCode != "") {
+                                    functionVerify(values)
+                                    setSubmitting(false);
+                                } else {
+                                    console.log("error")
+                                }
+                            }}
+                        >
+                            {({
+                                values,
+                                errors,
+                                touched,
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                isSubmitting,
+                            }) => (
+                                <form onSubmit={handleSubmit} className='registerForm-container'>
+                                    <div className='registerInput-box'>
+                                        <input type="text" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" />{errors.email && touched.email}
+                                    </div>
+                                    <div className='registerInput-box'>
+                                        <input type="text" name="verifiedCode" onChange={handleChange} onBlur={handleBlur} value={values.verifiedCode} placeholder="Verify Code" />{errors.verifiedCode && touched.verifiedCode}
+                                    </div>
+                                    <div className='registerForm-buttons'>
+                                        <button type="submit" disabled={isSubmitting} className="w-100 btn btn-dark">Verify!</button>
+                                    </div>
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 
