@@ -8,28 +8,36 @@ import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
 
-    const [products, setProduct] = useState([])
+    const [product, setProduct] = useState({})
     const [load, setLoad] = useState(true)
     const { pid } = useParams()
 
-    //const API_LINK = "http://localhost:8080/api/products"
-    const API_LINK ="http://localhost:8080/api/products"
+    const API_LINK = `http://localhost:8080/api/products/${pid}`
+
+    const getProduct = async () => {
+        try {
+            const res = await axios.get(API_LINK)
+            if (res.data.statusCode === 200) {
+                setProduct(res.data.response)
+                setLoad(false)
+                return res.data.response
+            } else {
+                return {}
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         setLoad(true)
-        axios(API_LINK)
-            .then((res) => {
-                setProduct(res.data.response.docs);
-                setLoad(false)
-            })
-            .catch((err) => console.log(err));
+        getProduct()
     }, [pid]);
 
-    const result = products.find(p => p._id === pid)
-
+    console.log(product)
     return (
         <div className='itemDetailContainer__container'>
-            {load ? (<Loading />) : <ItemDetail products={result} />}
+            {load ? (<Loading />) : <ItemDetail product={product} />}
         </div>
     )
 }

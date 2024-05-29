@@ -7,11 +7,10 @@ import './ItemDetail.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ItemDetail = ({ products }) => {
+const ItemDetail = ({ product }) => {
+    const { title, price, photo, stock } = product
 
-    const { _id, title, price, photo, stock } = products
-
-    const { addItemToCart, itemInCart } = useContext(CartContext);
+    const { createOrder, addItem } = useContext(CartContext);
     const [count, setCount] = useState(1);
 
     const [imageNumber, setImageAux] = useState(0);
@@ -42,14 +41,13 @@ const ItemDetail = ({ products }) => {
         });
     }
 
+
+
     const callFunction = () => {
-        if (itemInCart(_id)) {
-            toastyDuplicated(count);
-            addItemToCart(products, count);
-        } else {
-            toastyNew(count);
-            addItemToCart(products, count);
-        }
+
+        // createOrder(products, count);
+        addItem(product, count)
+
     }
 
     const [mobileResponsive, setmobileResponsive] = useState(window.innerWidth < 768);
