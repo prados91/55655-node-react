@@ -5,7 +5,7 @@ import './ItemList.css'
 
 const ItemList = ({ products }) => {
     return (
-        <div className="container-fluid">
+        < div className="container-fluid" >
             <div className="row justify-content-center">
                 {
                     products.map((p) => {
@@ -21,7 +21,7 @@ const ItemList = ({ products }) => {
                     })
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

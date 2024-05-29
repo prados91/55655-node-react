@@ -21,11 +21,11 @@ const ItemListContainer = () => {
     const [title, setTitle] = useState("")
     const { home, setHome } = useContext(ProductContext)
 
-    const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
-
+    
     const fetchProducts = async () => {
         setLoad(true);
         try {
+            const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
             const res = await axios.get(API_LINK);
             setProducts(() => [...res.data.response.docs]);
             setTotalPages(res.data.response.totalPages);
