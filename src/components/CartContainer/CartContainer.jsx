@@ -14,24 +14,8 @@ const CartContainer = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [cartEmpty, setCartEmpty] = useState(true);
 
-    const { cart, readCart, deleteOrder } = useContext(CartContext);
+    const { cart, readCart, deleteOrder ,checkout} = useContext(CartContext);
 
-    const toasty = () => {
-        toast.error('Se eliminaron todos los productos del carrito', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "light",
-        });
-    }
-
-    const callFunction = () => {
-        toasty();
-    }
 
     useEffect(() => {
         setTotalPrice(cart.reduce((acum, item) => acum + item.quantity * item.product_id.price, 0));
@@ -60,12 +44,12 @@ const CartContainer = () => {
                     <div className="cartContainer__buttons">
                         <button
                             className="cartContainer__btnclearItemsFromCart"
-                            onClick={() => { callFunction() }}
+                            onClick={() => { console.log("HOLA") }}
                         >
                             Vaciar carrito
                         </button>
-                        <Link to="/form" >
-                            <button className="cartContainer__btnForm">Finalizar compra</button>
+                        <Link >
+                            <button className="cartContainer__btnForm" onClick={() => checkout()}>Finalizar compra</button>
                         </Link>
                     </div>
                 )}

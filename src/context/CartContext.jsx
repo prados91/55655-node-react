@@ -182,8 +182,26 @@ export const CartProvider = ({ children }) => {
 
     }
 
+    const checkout = async () => {
+        try {
+            const res = await axios.post("http://localhost:8080/api/payments/checkout")
+            Swal.fire({
+                title: `Checkout!`,
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "OK",
+            }).then(() => {
+                location.replace(res.data.url)
+            });
+            return
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
-        <CartContext.Provider value={{ cart, readCart, createOrder, deleteOrder, updateOrder, addItem }}>
+        <CartContext.Provider value={{ cart, readCart, createOrder, deleteOrder, updateOrder, addItem, checkout }}>
             {children}
         </CartContext.Provider>
     );
