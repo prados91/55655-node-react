@@ -16,7 +16,7 @@ const EditProfile = () => {
     const readUser = async (uid) => {
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
-        const res = await axios.get(`http://localhost:8080/api/users/${uid}`, cookie)
+        const res = await axios.get(`https://serverapp-atp.up.railway.app//api/users/${uid}`, cookie)
         res ? setActualUser(res.data.response) : setActualUser({})
         return true
     }
@@ -24,7 +24,7 @@ const EditProfile = () => {
     const updateUser = async (values) => {
         try {
             setIsLoading(true)
-            const res = await axios.put(`http://localhost:8080/api/users/${uid}`, values)
+            const res = await axios.put(`https://serverapp-atp.up.railway.app//api/users/${uid}`, values)
             if (res.data.statusCode === 201) {
                 Swal.fire({
                     title: `Information updated!`,

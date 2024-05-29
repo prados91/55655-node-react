@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 
 const RestoreInfo = ({ uid }) => {
 
-    const API_LINK = `http://localhost:8080/api/users/${uid}`
+    const API_LINK = `https://serverapp-atp.up.railway.app//api/users/${uid}`
 
     axios.defaults.withCredentials = true;
 
