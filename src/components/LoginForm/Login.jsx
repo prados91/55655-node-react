@@ -10,10 +10,10 @@ const Login = () => {
 
     const { user, admin, setRole, setAdmin, setUser, prem, setPrem, setUserName } = useContext(UserContext);
 
-    const API_LINK = "https://serverapp-atp.up.railway.app//api/sessions/login"
-    const API_USER = "https://serverapp-atp.up.railway.app//api/sessions/me"
-    // const API_LINK = "https://serverapp-atp.up.railway.app//api/sessions/login"
-    //const API_USER = "https://serverapp-atp.up.railway.app//api/sessions/me"
+    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
+    const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
+    // const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
+    //const API_USER = "https://serverapp-atp.up.railway.app/api/sessions/me"
 
 
     axios.defaults.withCredentials = true;

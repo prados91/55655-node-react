@@ -17,7 +17,7 @@ const LoginForm = () => {
     const [admin, setAdmin] = useState(false)
     const [prem, setPrem] = useState(false)
     const [role, setRole] = useState("")
-    const API_LINK = "https://serverapp-atp.up.railway.app//api/sessions/login"
+    const API_LINK = "https://serverapp-atp.up.railway.app/api/sessions/login"
     axios.defaults.withCredentials = true;
 
     const functionLogIn = async (data) => {

@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     const verifyUser = async () => {
-        const res = await axios.post("https://serverapp-atp.up.railway.app//api/sessions/me")
+        const res = await axios.post("https://serverapp-atp.up.railway.app/api/sessions/me")
         if (res.data.statusCode === 200) {
             return res.data.response
         } else {
@@ -49,7 +49,7 @@ export const CartProvider = ({ children }) => {
                     product_id: product_id,
                     quantity: quantity,
                 };
-                const response = await axios.post("https://serverapp-atp.up.railway.app//api/orders", data)
+                const response = await axios.post("https://serverapp-atp.up.railway.app/api/orders", data)
                 if (response.data.statusCode === 201) {
                     Swal.fire({
                         title: "Done!",
@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
         try {
             const user = await verifyUser()
             if (user !== null) {
-                const res = await axios.get("https://serverapp-atp.up.railway.app//api/orders")
+                const res = await axios.get("https://serverapp-atp.up.railway.app/api/orders")
                 if (res.data.statusCode === 200) {
                     const cart = res.data.response.docs
                     setCart(cart)
@@ -109,7 +109,7 @@ export const CartProvider = ({ children }) => {
                 const data = {
                     quantity: quantity
                 }
-                const res = await axios.put(`https://serverapp-atp.up.railway.app//api/orders/${oid}`, data)
+                const res = await axios.put(`https://serverapp-atp.up.railway.app/api/orders/${oid}`, data)
                 if (res.data.statusCode === 200) {
                     Swal.fire({
                         title: `Order updated`,
@@ -142,7 +142,7 @@ export const CartProvider = ({ children }) => {
         try {
             const user = await verifyUser()
             if (user !== null) {
-                const res = await axios.delete(`https://serverapp-atp.up.railway.app//api/orders/${oid}`)
+                const res = await axios.delete(`https://serverapp-atp.up.railway.app/api/orders/${oid}`)
                 if (res.data.statusCode === 200) {
                     Swal.fire({
                         title: `Order eliminated`,
@@ -184,7 +184,7 @@ export const CartProvider = ({ children }) => {
 
     const checkout = async () => {
         try {
-            const res = await axios.post("https://serverapp-atp.up.railway.app//api/payments/checkout")
+            const res = await axios.post("https://serverapp-atp.up.railway.app/api/payments/checkout")
             Swal.fire({
                 title: `Checkout!`,
                 icon: "success",
