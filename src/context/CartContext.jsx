@@ -142,7 +142,9 @@ export const CartProvider = ({ children }) => {
         try {
             const user = await verifyUser()
             if (user !== null) {
-                const res = await axios.delete(`https://serverapp-atp.up.railway.app/api/orders/${oid}`)
+                let cookie = document.cookie.split("; ")
+                cookie = cookie.find(each => each.split("=")[0] === "token")
+                const res = await axios.delete(`https://serverapp-atp.up.railway.app/api/orders/${oid}`, cookie)
                 if (res.data.statusCode === 200) {
                     Swal.fire({
                         title: `Order eliminated`,

@@ -1,0 +1,21 @@
+.checkout_container {
+    min-height: calc(100vh - 35px);
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}
