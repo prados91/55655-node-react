@@ -11,8 +11,8 @@ const RestoreContainer = () => {
     const [uid, setUid] = useState("")
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-    //const LINK_TOKEN = `https://coderbasketstore.up.railway.app//api/users/${token}`
-    const LINK_TOKEN = `https://coderbasketstore.up.railway.app//api/users/${token}`
+    //const LINK_TOKEN = `https://coderbasketstore.up.railway.app/api/users/${token}`
+    const LINK_TOKEN = `https://coderbasketstore.up.railway.app/api/users/${token}`
 
     axios.defaults.withCredentials = true;
 

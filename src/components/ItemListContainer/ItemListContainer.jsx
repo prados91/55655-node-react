@@ -25,7 +25,7 @@ const ItemListContainer = () => {
     const fetchProducts = async () => {
         setLoad(true);
         try {
-            const API_LINK = `https://coderbasketstore.up.railway.app//api/products/?title=${title}&page=${page}`
+            const API_LINK = `https://coderbasketstore.up.railway.app/api/products/?title=${title}&page=${page}`
             const res = await axios.get(API_LINK);
             setProducts(() => [...res.data.response.docs]);
             setTotalPages(res.data.response.totalPages);

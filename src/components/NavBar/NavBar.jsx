@@ -27,7 +27,7 @@ const NavBar = () => {
     const verify = async () => {
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
-        const res = await axios.post("https://coderbasketstore.up.railway.app//api/sessions/me", cookie)
+        const res = await axios.post("https://coderbasketstore.up.railway.app/api/sessions/me", cookie)
         const user = res.data.response
         if (user) {
             setUserId(user._id)
@@ -81,7 +81,7 @@ const NavBar = () => {
 
     const submitLogOut = async () => {
         hideMenu()
-        const API_LINK = "https://coderbasketstore.up.railway.app//api/sessions/signout"
+        const API_LINK = "https://coderbasketstore.up.railway.app/api/sessions/signout"
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
         const res = await axios.post(API_LINK, role, cookie);

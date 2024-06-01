@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     const [load, setLoad] = useState(true)
     const { pid } = useParams()
 
-    const API_LINK = `https://coderbasketstore.up.railway.app//api/products/${pid}`
+    const API_LINK = `https://coderbasketstore.up.railway.app/api/products/${pid}`
 
     const getProduct = async () => {
         try {
