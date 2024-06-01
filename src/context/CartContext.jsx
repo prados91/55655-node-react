@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     const verifyUser = async () => {
-        const res = await axios.post("http://localhost:8080/api/sessions/me")
+        const res = await axios.post("https://coderbasketstore.up.railway.app//api/sessions/me")
         if (res.data.statusCode === 200) {
             return res.data.response
         } else {
@@ -49,7 +49,7 @@ export const CartProvider = ({ children }) => {
                     product_id: product_id,
                     quantity: quantity,
                 };
-                const response = await axios.post("http://localhost:8080/api/orders", data)
+                const response = await axios.post("https://coderbasketstore.up.railway.app//api/orders", data)
                 if (response.data.statusCode === 201) {
                     Swal.fire({
                         title: "Done!",
@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
         try {
             const user = await verifyUser()
             if (user !== null) {
-                const res = await axios.get("http://localhost:8080/api/orders")
+                const res = await axios.get("https://coderbasketstore.up.railway.app//api/orders")
                 if (res.data.statusCode === 200) {
                     const cart = res.data.response.docs
                     setCart(cart)
@@ -109,7 +109,7 @@ export const CartProvider = ({ children }) => {
                 const data = {
                     quantity: quantity
                 }
-                const res = await axios.put(`http://localhost:8080/api/orders/${oid}`, data)
+                const res = await axios.put(`https://coderbasketstore.up.railway.app//api/orders/${oid}`, data)
                 if (res.data.statusCode === 200) {
                     Swal.fire({
                         title: `Order updated`,
@@ -144,7 +144,7 @@ export const CartProvider = ({ children }) => {
             if (user !== null) {
                 let cookie = document.cookie.split("; ")
                 cookie = cookie.find(each => each.split("=")[0] === "token")
-                const res = await axios.delete(`http://localhost:8080/api/orders/${oid}`, cookie)
+                const res = await axios.delete(`https://coderbasketstore.up.railway.app//api/orders/${oid}`, cookie)
                 if (res.data.statusCode === 200) {
                     Swal.fire({
                         title: `Order eliminated`,
@@ -186,7 +186,7 @@ export const CartProvider = ({ children }) => {
 
     const checkout = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/payments/checkout")
+            const res = await axios.post("https://coderbasketstore.up.railway.app//api/payments/checkout")
             Swal.fire({
                 title: `Checkout!`,
                 icon: "success",
