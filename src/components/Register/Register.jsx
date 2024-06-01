@@ -96,7 +96,11 @@ const Register = () => {
                                     functionRegister(values)
                                     setSubmitting(false);
                                 } else {
-                                    console.log("error")
+                                    Swal.fire({
+                                        title: `ERROR`,
+                                        icon: "error",
+                                        text: "Please, try again in a while.",
+                                    })
                                 }
                             }}
                         >
@@ -158,7 +162,11 @@ const Register = () => {
                                     functionVerify(values)
                                     setSubmitting(false);
                                 } else {
-                                    console.log("error")
+                                    Swal.fire({
+                                        title: `ERROR`,
+                                        icon: "error",
+                                        text: "Please, try again in a while.",
+                                    })
                                 }
                             }}
                         >

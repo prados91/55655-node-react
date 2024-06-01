@@ -65,7 +65,11 @@ const ProductForm = () => {
                                 functionCreate(values)
                                 setSubmitting(false);
                             } else {
-                                console.log("error")
+                                Swal.fire({
+                                    title: `ERROR`,
+                                    icon: "error",
+                                    text: "Please, try again in a while.",
+                                })
                             }
                         }}
                     >
