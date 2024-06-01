@@ -48,15 +48,12 @@ const LoginForm = () => {
                 });
             }
         } catch (error) {
-            console.log(error);
             Swal.fire({
-                title: `SERVER ERROR`,
+                title: `${error.message}`,
                 icon: "error",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK",
+                text: "Please, try again in a while.",
             }).then(() => {
-                setIsLoading(false)
-                location.reload()
+                location.replace('/')
             });
         }
     };

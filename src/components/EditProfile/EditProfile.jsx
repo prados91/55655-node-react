@@ -47,13 +47,11 @@ const EditProfile = () => {
             }
         } catch (error) {
             Swal.fire({
-                title: `SERVER ERROR`,
+                title: `${error.message}`,
                 icon: "error",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK",
+                text: "Please, try again in a while.",
             }).then(() => {
-                setIsLoading(false)
-                location.replace(`/user/${uid}`)
+                location.replace('/')
             });
         }
     }
@@ -62,7 +60,7 @@ const EditProfile = () => {
         setActualUser({})
         readUser(uid)
     }, [uid])
-    
+
     return (
         <>
             {!isLoading ? (<div className='container-fluid editProfile-container'>

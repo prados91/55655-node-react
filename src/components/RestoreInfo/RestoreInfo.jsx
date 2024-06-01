@@ -31,20 +31,14 @@ const RestoreInfo = ({ uid }) => {
                     confirmButtonText: "OK",
                 })
             }
-            // } else {
-            //     Swal.fire({
-            //         title: "Link expired",
-            //         icon: "error",
-            //         confirmButtonColor: "#3085d6",
-            //         confirmButtonText: "OK",
-            //     }).then((result) => {
-            //         if (result.isConfirmed || !result.isConfirmed) {
-            //             //location.replace("/")
-            //         }
-            //     })
-            // }
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                title: `${error.message}`,
+                icon: "error",
+                text: "Please, try again in a while.",
+            }).then(() => {
+                location.replace('/')
+            });
         }
     };
 

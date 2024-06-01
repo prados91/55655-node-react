@@ -25,7 +25,13 @@ const ItemDetailContainer = () => {
                 return {}
             }
         } catch (error) {
-            Swal.fire({ title: "Server Error", icon: "error", confirmButtonColor: "#343330", confirmButtonText: "OK", }).then(() => { location.replace("/") });
+            Swal.fire({
+                title: `${error.message}`,
+                icon: "error",
+                text: "Please, try again in a while.",
+            }).then(() => {
+                location.replace('/')
+            });
         }
     }
 

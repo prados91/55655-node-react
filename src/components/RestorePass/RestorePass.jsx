@@ -35,7 +35,13 @@ const RestorePass = () => {
                 });
             }
         } catch (error) {
-            console.log(error)
+            Swal.fire({
+                title: `${error.message}`,
+                icon: "error",
+                text: "Please, try again in a while.",
+            }).then(() => {
+                location.replace('/')
+            });
         }
     }
 

@@ -35,16 +35,13 @@ const UserProfile = () => {
             }
         } catch (error) {
             Swal.fire({
-                name: error,
-                icon: 'error',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    setUser({});
-                    setIsLoading(false)
-                    location.replace('/');
-                }
+                title: `${error.message}`,
+                icon: "error",
+                text: "Please, try again in a while.",
+            }).then(() => {
+                setUser({});
+                setIsLoading(false)
+                location.replace('/');
             });
         }
     };

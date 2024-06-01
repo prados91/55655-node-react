@@ -7,7 +7,7 @@ import PageCount from '../PageCount/PageCount'
 import Filter from '../Filter/Filter'
 
 import { ProductContext } from '../../context/ProductContext'
-
+import Swal from 'sweetalert2'
 
 import './ItemListContainer.css'
 const ItemListContainer = () => {
@@ -21,18 +21,27 @@ const ItemListContainer = () => {
     const [title, setTitle] = useState("")
     const { home, setHome } = useContext(ProductContext)
 
-    
+
     const fetchProducts = async () => {
         setLoad(true);
         try {
             const API_LINK = `http://localhost:8080/api/products/?title=${title}&page=${page}`
             const res = await axios.get(API_LINK);
-            setProducts(() => [...res.data.response.docs]);
-            setTotalPages(res.data.response.totalPages);
+            if (res.data.statusCode === 200) {
+                setProducts(() => [...res.data.response.docs]);
+                setTotalPages(res.data.response.totalPages);
+                setLoad(false);
+            } else {
+                setProducts([])
+                setLoad(false)
+            }
+        } catch (error) {
             setLoad(false);
-        } catch (err) {
-            console.log(err);
-            setLoad(false);
+            Swal.fire({
+                title: `${error.message}`,
+                icon: "error",
+                text: "Please, try again in a while.",
+            });
         }
     };
 
