@@ -12,7 +12,7 @@ const UserProfile = () => {
 
     const readUser = async (uid) => {
         try {
-            const API_LINK = `https://serverapp-atp.up.railway.app/api/users/${uid}`;
+            const API_LINK = `http://localhost:8080/api/users/${uid}`;
             const res = await axios.get(API_LINK, document.cookie);
             if (res.data.statusCode === 200) {
                 setUser(res.data.response);
