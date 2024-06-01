@@ -12,7 +12,7 @@ const Register = () => {
 
     const [load, setLoad] = useState(false);
     const [register, setRegister] = useState(false)
-    const API_LINK = "https://coderbasketstore.up.railway.app/api/sessions"
+    const API_LINK = "http://localhost:8080/api/sessions"
 
 
     const functionRegister = async (data) => {
@@ -20,7 +20,7 @@ const Register = () => {
             setRegister(false)
             setLoad(true)
             const res = await axios.post(API_LINK + "/register", data, { withCredentials: true });
-            console.log(res)
+
             if (res.data.statusCode === 201) {
                 setLoad(false)
                 setRegister(true)

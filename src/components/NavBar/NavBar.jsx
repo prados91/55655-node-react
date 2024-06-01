@@ -4,7 +4,6 @@ import navLogo1 from '../../images/logoBasketStoreWhite.svg'
 import axios from "axios";
 import Swal from 'sweetalert2';
 
-//import { UserContext } from "../../context/UserContext";
 import { ProductContext } from "../../context/ProductContext";
 
 import './NavBar.css'
@@ -21,15 +20,14 @@ const NavBar = () => {
     const [uid, setUserId] = useState("")
 
 
-    //const { verifyUser } = useContext(UserContext)
     const { setHome } = useContext(ProductContext)
 
     const verify = async () => {
         let cookie = document.cookie.split("; ")
         cookie = cookie.find(each => each.split("=")[0] === "token")
-        const res = await axios.post("https://coderbasketstore.up.railway.app/api/sessions/me", cookie)
-        const user = res.data.response
-        if (user) {
+        const res = await axios.post("http://localhost:8080/api/sessions/me", cookie)
+        if (res.data.statusCode === 200) {
+            const user = res.data.response
             setUserId(user._id)
             if (user.role === "ADMIN") {
                 setAdmin(true)
@@ -80,28 +78,30 @@ const NavBar = () => {
     };
 
     const submitLogOut = async () => {
-        hideMenu()
-        const API_LINK = "https://coderbasketstore.up.railway.app/api/sessions/signout"
-        let cookie = document.cookie.split("; ")
-        cookie = cookie.find(each => each.split("=")[0] === "token")
-        const res = await axios.post(API_LINK, role, cookie);
-        console.log(res)
-        if (res.data.statusCode === 200) {
-            setAdmin(false)
-            setUser(false)
-            setPrem(false)
-            setRole("")
-            localStorage.removeItem("token");
-            Swal.fire({
-                title: "GOOD BYE!",
-                icon: "success",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    location.replace("/");
-                }
-            });
+        try {
+            hideMenu()
+            let cookie = document.cookie.split("; ")
+            cookie = cookie.find(each => each.split("=")[0] === "token")
+            const res = await axios.post("http://localhost:8080/api/sessions/signout", cookie)
+            if (res.data.statusCode === 200) {
+                setAdmin(false)
+                setUser(false)
+                setPrem(false)
+                setRole("")
+                localStorage.removeItem("token");
+                Swal.fire({
+                    title: "GOOD BYE!",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.replace("/");
+                    }
+                });
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -152,7 +152,6 @@ const NavBar = () => {
                         <Link onClick={submitLogOut}>SignOut</Link>
                     </li>
                 }
-
             </ul>
         </nav >
     );

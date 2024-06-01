@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     const [load, setLoad] = useState(true)
     const { pid } = useParams()
 
-    const API_LINK = `https://coderbasketstore.up.railway.app/api/products/${pid}`
+    const API_LINK = `http://localhost:8080/api/products/${pid}`
 
     const getProduct = async () => {
         try {
@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
                 return {}
             }
         } catch (error) {
-            console.log(error)
+            Swal.fire({ title: "Server Error", icon: "error", confirmButtonColor: "#343330", confirmButtonText: "OK", }).then(() => { location.replace("/") });
         }
     }
 
@@ -34,7 +34,6 @@ const ItemDetailContainer = () => {
         getProduct()
     }, [pid]);
 
-    console.log(product)
     return (
         <div className='itemDetailContainer__container'>
             {load ? (<Loading />) : <ItemDetail product={product} />}

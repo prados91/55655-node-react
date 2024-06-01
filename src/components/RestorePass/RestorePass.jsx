@@ -7,14 +7,13 @@ import './RestorePass.css'
 const RestorePass = () => {
 
     axios.defaults.withCredentials = true;
-    //const API_LINK = "https://coderbasketstore.up.railway.app/api/sessions/recovery"
-    const API_LINK = "https://coderbasketstore.up.railway.app/api/sessions/recovery"
+    //const API_LINK = "http://localhost:8080/api/sessions/recovery"
+    const API_LINK = "http://localhost:8080/api/sessions/recovery"
 
 
     const functionRecovery = async (data) => {
         try {
             const res = await axios.post(API_LINK, data);
-            console.log(res)
             // if (res.data.message === "Not Found") {
             if (res.data.statusCode !== 200) {
                 Swal.fire({
