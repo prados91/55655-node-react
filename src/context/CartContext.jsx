@@ -238,8 +238,43 @@ export const CartProvider = ({ children }) => {
         }
     }
 
+    const report = async () => {
+        try {
+            const user = await verifyUser()
+            if (user !== null) {
+                const { _id } = user
+                const res = await axios.get(`http://localhost:8080/api/orders/total/${_id}`)
+                if (res.data.statusCode === 200) {
+                    const report = res.data.response[0]
+                    /*Swal.fire({
+                        title: `Order updated`,
+                        icon: "success",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                    }).then(() => {
+                        readCart()
+                        return true
+                    });*/
+                    return report
+                } else {
+                    /*Swal.fire({
+                        title: `Sorry, we can't update the order`,
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK",
+                    }).then(() => {
+                        readCart()
+                    });*/
+                    return false
+                }
+            }
+
+        } catch (error) {
+
+        }
+    }
     return (
-        <CartContext.Provider value={{ cart, readCart, createOrder, deleteOrder, updateOrder, addItem, checkout }}>
+        <CartContext.Provider value={{ cart, readCart, createOrder, deleteOrder, updateOrder, addItem, checkout, report }}>
             {children}
         </CartContext.Provider>
     );
