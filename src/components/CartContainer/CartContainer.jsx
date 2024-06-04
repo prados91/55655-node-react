@@ -9,12 +9,10 @@ import CartCards from "../CartCards/CartCards";
 
 const CartContainer = () => {
 
-    //const [totalPrice, setTotalPrice] = useState(0);
-    //const [cartEmpty, setCartEmpty] = useState(true);
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const { cart, readCart, deleteOrder, checkout } = useContext(CartContext);
+    const { readCart } = useContext(CartContext);
 
     const render = async () => {
         setIsLoading(false)
@@ -36,11 +34,6 @@ const CartContainer = () => {
             });
         }
     }
-/*
-    useEffect(() => {
-        setTotalPrice(cart.reduce((acum, item) => acum + item.quantity * item.product_id.price, 0));
-    }, [cart]);*/
-
     useEffect(() => {
         render()
     }, []);
