@@ -20,7 +20,6 @@ const Register = () => {
             setRegister(false)
             setLoad(true)
             const res = await axios.post(API_LINK + "/register", data, { withCredentials: true });
-
             if (res.data.statusCode === 201) {
                 setLoad(false)
                 setRegister(true)
@@ -72,7 +71,7 @@ const Register = () => {
                     <div style={{ maxWidth: '420px' }} className='container register'>
                         <h1>Register!</h1>
                         <Formik
-                            initialValues={{ email: "", password: "", name: "", lastname: "", photo: "" }}
+                            initialValues={{ email: "", password: "", name: "", lastName: "", photo: "" }}
                             validate={(values) => {
                                 const errors = {};
                                 if (!values.password) {
@@ -86,8 +85,8 @@ const Register = () => {
                                 if (!values.name) {
                                     errors.name = "Ingrese su nombre";
                                 }
-                                if (!values.lastname) {
-                                    errors.lastname = "Ingrese su apellido";
+                                if (!values.lastName) {
+                                    errors.lastName = "Ingrese su apellido";
                                 }
                                 return errors;
                             }}
@@ -118,10 +117,13 @@ const Register = () => {
                                         <input type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" required />{errors.name && touched.name && errors.name}
                                     </div>
                                     <div className='registerInput-box'>
-                                        <input type="text" name="lastname" onChange={handleChange} onBlur={handleBlur} value={values.lastname} placeholder="Last name" required />{errors.lastname && touched.lastname && errors.lastname}
+                                        <input type="text" name="lastName" onChange={handleChange} onBlur={handleBlur} value={values.lastName} placeholder="Last name" required />{errors.lastName && touched.lastName && errors.lastName}
                                     </div>
                                     <div className='registerInput-box'>
                                         <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" required />{errors.email && touched.email && errors.email}
+                                    </div>
+                                    <div className='registerInput-box'>
+                                        <input type="password" name="password" onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder="Password" required />{errors.password && touched.password && errors.password}
                                     </div>
                                     <div className='registerInput-box'>
                                         <input type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" required />{errors.photo && touched.photo && errors.photo}

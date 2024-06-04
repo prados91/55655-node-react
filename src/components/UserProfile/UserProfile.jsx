@@ -15,7 +15,6 @@ const UserProfile = () => {
     const verifyUser = async () => {
         try {
             const res = await axios.post("http://localhost:8080/api/sessions/me")
-            console.log(res.data.statusCode)
             if (res.data.statusCode === 200) {
                 return res.data.response
             } else {

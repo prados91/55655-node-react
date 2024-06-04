@@ -77,7 +77,7 @@ const EditProfile = () => {
                 <div style={{ maxWidth: '420px' }} className='container editProfile'>
                     <h1>Edit: {actualUser.name ? actualUser.name : "ERROR"} Profile</h1>
                     <Formik
-                        initialValues={{ name: "", lastName: "", email: "", photo: "" }}
+                        initialValues={{ name: actualUser.name, lastName: actualUser.lastName, email: actualUser.email, photo: actualUser.photo }}
                         validate={(values) => {
                             const errors = {};
                             if (!values.name) {
@@ -97,12 +97,13 @@ const EditProfile = () => {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            values.name = values.name || actualUser.name
-                            values.lastName = values.lastName || actualUser.lastName
-                            values.email = values.email || actualUser.email
-                            values.photo = values.photo || actualUser.photo
-
-                            updateUser(values)
+                            const updatedValues = {
+                                name: values.name || actualUser.name,
+                                lastName: values.lastName || actualUser.lastName,
+                                email: values.email || actualUser.email,
+                                photo: values.photo || actualUser.photo
+                            };
+                            updateUser(updatedValues)
                             setSubmitting(false);
                         }}
                     >
@@ -117,16 +118,16 @@ const EditProfile = () => {
                         }) => (
                             <form onSubmit={handleSubmit} className='editForm-container'>
                                 <div className='formInput-box'>
-                                    <input type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" required />{errors.name && touched.name && errors.name}
+                                    <input type="text" name="name" onChange={handleChange} onBlur={handleBlur} value={values.name} placeholder="Name" />{errors.name && touched.name && errors.name}
                                 </div>
                                 <div className='formInput-box'>
-                                    <input type="text" name="lastName" onChange={handleChange} onBlur={handleBlur} value={values.lastName} placeholder="Last name" required />{errors.lastName && touched.lastName && errors.lastName}
+                                    <input type="text" name="lastName" onChange={handleChange} onBlur={handleBlur} value={values.lastName} placeholder="Last name" />{errors.lastName && touched.lastName && errors.lastName}
                                 </div>
                                 <div className='formInput-box'>
                                     <input type="email" name="email" onChange={handleChange} onBlur={handleBlur} value={values.email} placeholder="Email" required />{errors.email && touched.email && errors.email}
                                 </div>
                                 <div className='formInput-box'>
-                                    <input type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" required />{errors.photo && touched.photo && errors.photo}
+                                    <input type="text" name="photo" onChange={handleChange} onBlur={handleBlur} value={values.photo} placeholder="URL Photo" />{errors.photo && touched.photo && errors.photo}
                                 </div>
                                 <div className='editForm-buttons'>
                                     <button type="submit" disabled={isSubmitting} className="w-20 btn btn-dark" >Confirm new data</button>
