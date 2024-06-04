@@ -17,12 +17,8 @@ const CartContainer = () => {
     const render = async () => {
         setIsLoading(false)
         try {
-            const state = await readCart()
-            if (state && !isLoading) {
-                setIsLoading(true)
-            } else {
-                setIsLoading(false)
-            }
+            await readCart()
+            setIsLoading(true)
         } catch (error) {
             Swal.fire({
                 title: `${error.message}`,

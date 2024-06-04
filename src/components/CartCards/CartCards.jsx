@@ -26,6 +26,7 @@ const CartCards = () => {
             setCartEmpty(true)
         }
     }, [cart])
+
     return (
         <div className="cartContainer">
             <div className="cartContainer__container">
