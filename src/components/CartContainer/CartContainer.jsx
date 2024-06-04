@@ -1,17 +1,16 @@
 import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { CartContext } from '../../context/CartContext'
-import { ToastContainer, toast } from 'react-toastify';
 import CartItem from '../CartItem/CartItem'
 import Loading from "../Loading/Loading";
 
-import 'react-toastify/dist/ReactToastify.css';
 import './CartContainer.css'
+import CartCards from "../CartCards/CartCards";
 
 const CartContainer = () => {
 
-    const [totalPrice, setTotalPrice] = useState(0);
-    const [cartEmpty, setCartEmpty] = useState(true);
+    //const [totalPrice, setTotalPrice] = useState(0);
+    //const [cartEmpty, setCartEmpty] = useState(true);
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -22,25 +21,25 @@ const CartContainer = () => {
         try {
             const state = await readCart()
             if (state && !isLoading) {
-                setCartEmpty(true)
+                setIsLoading(true)
             } else {
-                setCartEmpty(false)
+                setIsLoading(false)
             }
-            setIsLoading(true)
         } catch (error) {
             Swal.fire({
                 title: `${error.message}`,
                 icon: "error",
                 text: "Please, try again in a while.",
             }).then(() => {
+                setIsLoading(false)
                 location.replace('/')
             });
         }
     }
-
+/*
     useEffect(() => {
         setTotalPrice(cart.reduce((acum, item) => acum + item.quantity * item.product_id.price, 0));
-    }, [cart]);
+    }, [cart]);*/
 
     useEffect(() => {
         render()
@@ -48,36 +47,7 @@ const CartContainer = () => {
 
     return (
         <>
-            {!isLoading ? <Loading /> :
-                <div className="cartContainer">
-                    <div className="cartContainer__container">
-                        <h2>Carrito de compras</h2>
-
-                        <hr />
-                        <div className="cartContainer__products">
-                            {!cartEmpty ? <div>El carrito de compras está vacio!</div> : <CartItem cart={cart} deleteOrder={deleteOrder} />}
-                        </div>
-                        <hr />
-                        <p className="cartContainer__totalPrice">
-                            <b>TOTAL: ${totalPrice}</b>
-                        </p>
-                        <hr />
-                        {cartEmpty && (
-                            <div className="cartContainer__buttons">
-                                <button
-                                    className="cartContainer__btnclearItemsFromCart"
-                                    onClick={() => { }}
-                                >
-                                    Vaciar carrito
-                                </button>
-                                <Link >
-                                    <button className="cartContainer__btnForm" onClick={() => checkout()}>Finalizar compra</button>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
-                    <ToastContainer />
-                </div>}
+            {!isLoading ? <Loading /> : <CartCards />}
         </>
 
     )
