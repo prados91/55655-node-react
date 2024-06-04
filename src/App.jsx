@@ -4,6 +4,7 @@ import { ProductProvider } from './context/ProductContext';
 
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemPremContainer from "./components/ItemPremContainer/ItemPremContainer";
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Footer from './components/Footer/Footer';
 import CartContainer from './components/CartContainer/CartContainer';
@@ -27,6 +28,7 @@ function App() {
                     <NavBar />
                     <Routes>
                         <Route exact path='/' element={<ItemListContainer />} />
+                        <Route exact path='/myProducts' element={<ItemPremContainer />} />
                         <Route exact path='/products/:pid' element={<ItemDetailContainer />} />
                         <Route exact path="/cart" element={<CartContainer />} />
                         <Route exact path="/form" element={<ProductForm />} />

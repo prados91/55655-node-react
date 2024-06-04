@@ -89,7 +89,7 @@ export const CartProvider = ({ children }) => {
                     })
                 } else {
                     Swal.fire({
-                        title: "Please, try again!",
+                        title: "Please, try again!" || response.data.message,
                         icon: "error",
                         timer: 5000,
                         timerProgressBar: true,

@@ -25,6 +25,7 @@
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(20px);
 }
+
 .blur_img {
     background-color: #01111a8d;
     background-color: #1c242d44;
@@ -89,7 +90,7 @@
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .Navbar {
         width: 100%;
     }
@@ -151,7 +152,8 @@
         rotate: 225deg;
         transition: 0.5s;
     }
-    .navbar_logo{
+
+    .navbar_logo {
         width: 50%;
     }
 }
