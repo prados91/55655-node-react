@@ -182,6 +182,9 @@ const NavBar = () => {
                 {(admin || prem) && <li onClick={hideMenu}>
                     <Link to="/form">Form</Link>
                 </li>}
+                {(prem) && <li onClick={hideMenu}>
+                    <Link to="/myProducts">My Products</Link>
+                </li>}
                 {(user || prem) && <li onClick={hideMenu}>
                     <Link to="/cart">
                         My Cart
