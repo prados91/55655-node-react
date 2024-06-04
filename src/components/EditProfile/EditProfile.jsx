@@ -1,9 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Formik } from 'formik';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Loading from '../Loading/Loading';
+
+import { UserContext } from '../../context/UserContext';
 
 import './EditProfile.css'
 
@@ -11,19 +13,25 @@ const EditProfile = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [actualUser, setActualUser] = useState({})
 
+    const { verifyUser } = useContext(UserContext)
+
     const { uid } = useParams()
 
-    const readUser = async (uid) => {
-        let cookie = document.cookie.split("; ")
-        cookie = cookie.find(each => each.split("=")[0] === "token")
-        const res = await axios.get(`http://localhost:8080/api/users/${uid}`, cookie)
-        res ? setActualUser(res.data.response) : setActualUser({})
-        return true
+    const readUser = async () => {
+        const res = await verifyUser()
+        if (res) {
+            setActualUser(res)
+            setIsLoading(true)
+            return true
+        } else {
+            setActualUser({})
+        }
+        return false
     }
+
 
     const updateUser = async (values) => {
         try {
-            setIsLoading(true)
             const res = await axios.put(`http://localhost:8080/api/users/${uid}`, values)
             if (res.data.statusCode === 201) {
                 Swal.fire({
@@ -43,6 +51,7 @@ const EditProfile = () => {
                     confirmButtonText: "OK",
                 }).then(() => {
                     setIsLoading(false)
+                    location.replace('/')
                 });
             }
         } catch (error) {
@@ -57,13 +66,14 @@ const EditProfile = () => {
     }
 
     useEffect(() => {
-        setActualUser({})
-        readUser(uid)
+        // setActualUser({})
+        setIsLoading(false)
+        readUser()
     }, [uid])
 
     return (
         <>
-            {!isLoading ? (<div className='container-fluid editProfile-container'>
+            {isLoading ? (<div className='container-fluid editProfile-container'>
                 <div style={{ maxWidth: '420px' }} className='container editProfile'>
                     <h1>Edit: {actualUser.name ? actualUser.name : "ERROR"} Profile</h1>
                     <Formik

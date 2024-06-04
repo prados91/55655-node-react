@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
+import { UserContext } from "./UserContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -7,7 +8,8 @@ export const CartContext = createContext([]);
 export const CartProvider = ({ children }) => {
 
     const [cart, setCart] = useState([]);
-
+    const { verifyUser } = useContext(UserContext)
+    /*
     const verifyUser = async () => {
         try {
             const res = await axios.post("http://localhost:8080/api/sessions/me")
@@ -36,7 +38,7 @@ export const CartProvider = ({ children }) => {
                 location.replace('/');
             });
         }
-    }
+    }*/
 
     const addItem = async (product, quantity) => {
         try {
