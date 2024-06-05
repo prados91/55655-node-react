@@ -1,38 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ItemPremDetailModify from "./ItemPremDetailModify";
 import axios from 'axios';
 import Loading from '../Loading/Loading'
 import Swal from "sweetalert2";
+import { useParams } from 'react-router-dom';
+import { UserContext } from "../../context/UserContext";
 
 import './ItemPremDetail.css'
-import { useParams } from 'react-router-dom';
-
 const ItemPremDetail = () => {
 
     const [product, setProduct] = useState({})
     const [load, setLoad] = useState(true)
     const { pid } = useParams()
-
+    const { verifyUser } = useContext(UserContext)
     const API_LINK = `http://localhost:8080/api/products/${pid}`
 
     const getProduct = async () => {
         try {
-            const res = await axios.get(API_LINK)
-            if (res.data.statusCode === 200) {
-                setProduct(res.data.response)
-                setLoad(false)
-                return res.data.response
+            const user = await verifyUser()
+            if (user.role === "PREM") {
+                const res = await axios.get(API_LINK)
+                if (res.data.statusCode === 200) {
+                    setProduct(res.data.response)
+                    setLoad(false)
+                    return res.data.response
+                } else {
+                    Swal.fire({
+                        title: `${res.data.message}`,
+                        icon: "error",
+                        text: "Please, try again in a while.",
+                        timer: 50000,
+                        timerProgressBar: true,
+                    }).then(() => {
+                        location.replace('/')
+                    });
+                    return {}
+                }
             } else {
                 Swal.fire({
-                    title: `${res.data.message}`,
+                    title: "Forbidden",
                     icon: "error",
-                    text: "Please, try again in a while.",
                     timer: 50000,
                     timerProgressBar: true,
                 }).then(() => {
-                    location.replace('/')
+                    location.replace('/');
                 });
-                return {}
             }
         } catch (error) {
             Swal.fire({

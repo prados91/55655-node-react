@@ -34,6 +34,14 @@ const ItemPremContainer = () => {
             } else {
                 setProducts([])
                 setLoad(false)
+                Swal.fire({
+                    title: `${res.data.message}`,
+                    icon: "error",
+                    timer: 50000,
+                    timerProgressBar: true,
+                }).then(() => {
+                    location.replace('/');
+                });
             }
         } catch (error) {
             setLoad(false);
