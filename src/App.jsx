@@ -4,7 +4,7 @@ import { ProductProvider } from './context/ProductContext';
 
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import ItemPremContainer from "./components/ItemPremContainer/ItemPremContainer";
+import ItemPremContainer from "./components/Premium/ItemPremContainer";
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Footer from './components/Footer/Footer';
 import CartContainer from './components/CartContainer/CartContainer';
@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound/NotFound";
 import UserProfile from "./components/UserProfile/UserProfile";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Thanks from "./components/Thanks/Thanks";
+import ItemPremDetail from "./components/Premium/ItemPremDetail";
 
 import './App.css'
 function App() {
@@ -28,7 +29,6 @@ function App() {
                     <NavBar />
                     <Routes>
                         <Route exact path='/' element={<ItemListContainer />} />
-                        <Route exact path='/myProducts' element={<ItemPremContainer />} />
                         <Route exact path='/products/:pid' element={<ItemDetailContainer />} />
                         <Route exact path="/cart" element={<CartContainer />} />
                         <Route exact path="/form" element={<ProductForm />} />
@@ -40,6 +40,8 @@ function App() {
                         <Route exact path="/edit-user/:uid" element={<EditProfile />} />
                         <Route exact path='/thanks' element={<Thanks />} />
                         <Route exact path='*' element={<NotFound />} />
+                        <Route exact path='/myProducts' element={<ItemPremContainer />} />
+                        <Route exact path='/myProducts/:pid' element={<ItemPremDetail />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>
