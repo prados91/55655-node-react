@@ -36,7 +36,7 @@ const ItemListContainer = () => {
                 setLoad(false)
             }
         } catch (error) {
-            setLoad(false);
+            setLoad(true);
             Swal.fire({
                 title: `${error.message}`,
                 icon: "error",
