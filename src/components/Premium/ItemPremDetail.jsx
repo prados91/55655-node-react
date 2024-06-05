@@ -40,7 +40,7 @@ const ItemPremDetail = () => {
                 Swal.fire({
                     title: "Forbidden",
                     icon: "error",
-                    timer: 50000,
+                    timer: 5000,
                     timerProgressBar: true,
                 }).then(() => {
                     location.replace('/');
