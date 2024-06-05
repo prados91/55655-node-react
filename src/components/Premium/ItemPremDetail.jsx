@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ItemDetailModify from "./ItemPremDetailModify";
+import ItemPremDetailModify from "./ItemPremDetailModify";
 import axios from 'axios';
 import Loading from '../Loading/Loading'
 import Swal from "sweetalert2";
@@ -50,7 +50,7 @@ const ItemPremDetail = () => {
 
     return (
         <div className='ItemPremDetail__container'>
-            {load ? (<Loading />) : <ItemDetailModify product={product} />}
+            {load ? (<Loading />) : <ItemPremDetailModify product={product} />}
         </div>
     )
 }
