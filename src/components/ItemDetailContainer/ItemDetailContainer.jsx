@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ItemDetail from '../ItemDetail/ItemDetail'
 import axios from 'axios';
 import Loading from '../Loading/Loading'
+import Swal from "sweetalert2";
 
 import './ItemDetailContainer.css'
 import { useParams } from 'react-router-dom';
@@ -22,6 +23,13 @@ const ItemDetailContainer = () => {
                 setLoad(false)
                 return res.data.response
             } else {
+                Swal.fire({
+                    title: `${res.data.message}`,
+                    icon: "error",
+                    text: "Please, try again in a while.",
+                }).then(() => {
+                    location.replace('/')
+                });
                 return {}
             }
         } catch (error) {
