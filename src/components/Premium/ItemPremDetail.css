@@ -1,0 +1,5 @@
+.ItemPremDetail__container {
+    min-height: calc(100vh - 35px);
+    padding-top: 130px;
+    padding-bottom: 30px;
+}

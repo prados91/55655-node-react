@@ -1,0 +1,15 @@
+.itemPremContainer__container {
+    min-height: calc(100vh - 35px);
+    background-color: #92979d;
+    padding-top: 130px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemPremContainer__container h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
