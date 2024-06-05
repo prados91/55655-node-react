@@ -41,6 +41,8 @@ const NavBar = () => {
                 title: `${error.message}`,
                 icon: "error",
                 text: "Please, try again in a while.",
+                timer: 50000,
+                timerProgressBar: true,
             }).then(() => {
                 location.replace('/')
             });
@@ -88,8 +90,10 @@ const NavBar = () => {
                 title: `${error.message}`,
                 icon: "error",
                 text: "Please, try again in a while.",
+                timer: 50000,
+                timerProgressBar: true,
             }).then(() => {
-                location.replace('/')
+                location.replace('*')
             });
         }
     }
@@ -139,7 +143,7 @@ const NavBar = () => {
             Swal.fire({
                 title: `${error.message}`,
                 icon: "error",
-                text: "Please, try again in a while.",
+                text: "Please, try again in a while.", timer: 50000, timerProgressBar: true,
             }).then(() => {
                 location.replace('/')
             });

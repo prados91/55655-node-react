@@ -95,7 +95,7 @@ const ItemPremDetailModify = ({ product }) => {
             Swal.fire({
                 title: `${error.message}`,
                 icon: "error",
-                text: "Please, try again in a while.",
+                text: "Please, try again in a while.",timer: 50000,timerProgressBar: true,
             }).then(() => {
                 location.replace('/');
             });

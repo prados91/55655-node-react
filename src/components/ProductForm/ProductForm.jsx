@@ -31,6 +31,8 @@ const ProductForm = () => {
                 title: `${error.message}`,
                 icon: "error",
                 text: "Please, try again in a while.",
+                timer: 50000,
+                timerProgressBar: true,
             }).then(() => {
                 location.replace('/')
             });
@@ -68,7 +70,7 @@ const ProductForm = () => {
                                 Swal.fire({
                                     title: `ERROR`,
                                     icon: "error",
-                                    text: "Please, try again in a while.",
+                                    text: "Please, try again in a while.",timer: 50000,timerProgressBar: true,
                                 })
                             }
                         }}
