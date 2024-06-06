@@ -297,8 +297,9 @@ export const CartProvider = ({ children }) => {
                 confirmButtonText: "OK",
             }).then(() => {
                 location.replace(res.data.url)
+                deleteAll()
             });
-            return
+            return true
 
         } catch (error) {
             Swal.fire({
