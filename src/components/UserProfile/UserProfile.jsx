@@ -14,7 +14,7 @@ const UserProfile = () => {
 
     const verifyUser = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/sessions/me")
+            const res = await axios.post("https://coderbasketstore.up.railway.app/api/sessions/me")
             if (res.data.statusCode === 200) {
                 return res.data.response
             } else {
@@ -48,7 +48,7 @@ const UserProfile = () => {
         try {
             const isUserLog = await verifyUser()
             if (isUserLog) {
-                const API_LINK = `http://localhost:8080/api/users/${uid}`;
+                const API_LINK = `https://coderbasketstore.up.railway.app/api/users/${uid}`;
                 const res = await axios.get(API_LINK, document.cookie);
                 if (res.data.statusCode === 200) {
                     setUser(res.data.response);

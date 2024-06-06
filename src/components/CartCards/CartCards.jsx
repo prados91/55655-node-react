@@ -4,10 +4,11 @@ import { CartContext } from '../../context/CartContext'
 import CartItem from '../CartItem/CartItem'
 
 import './CartCards.css'
+import axios from "axios";
 const CartCards = () => {
     const [userReport, setUserReport] = useState({});
     const [cartEmpty, setCartEmpty] = useState(true);
-    const { cart, deleteOrder, checkout, report } = useContext(CartContext);
+    const { cart, deleteOrder, checkout, report, deleteAll } = useContext(CartContext);
 
     const readReport = async () => {
         setUserReport({})
@@ -44,7 +45,7 @@ const CartCards = () => {
                     <div className="cartContainer__buttons">
                         <button
                             className="cartContainer__btnclearItemsFromCart"
-                            onClick={() => { }}
+                            onClick={() => { deleteAll() }}
                         >
                             Delete cart
                         </button>

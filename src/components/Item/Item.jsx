@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import "./Item.css"
 
 const Item = ({ id, title, price, photo }) => {
-
     return (
         <div className="col-10 col-sm-6 col-md-4 col-xl-3 p-4 d-flex align-items-stretch">
             <div className="item__card">

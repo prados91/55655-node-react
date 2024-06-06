@@ -32,7 +32,7 @@ const EditProfile = () => {
 
     const updateUser = async (values) => {
         try {
-            const res = await axios.put(`http://localhost:8080/api/users/${uid}`, values)
+            const res = await axios.put(`https://coderbasketstore.up.railway.app/api/users/${uid}`, values)
             if (res.data.statusCode === 201) {
                 Swal.fire({
                     title: `Information updated!`,

@@ -19,7 +19,7 @@ const ItemPremDetailModify = ({ product }) => {
             setIsLoading(false)
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "token")
-            const res = await axios.put(`http://localhost:8080/api/products/${pid}`, data, cookie)
+            const res = await axios.put(`https://coderbasketstore.up.railway.app/api/products/${pid}`, data, cookie)
             console.log(res.data)
             if (res.data.statusCode === 200) {
                 Swal.fire({
@@ -67,7 +67,7 @@ const ItemPremDetailModify = ({ product }) => {
             setIsLoading(false)
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "token")
-            const res = await axios.delete(`http://localhost:8080/api/products/${pid}`, data, cookie)
+            const res = await axios.delete(`https://coderbasketstore.up.railway.app/api/products/${pid}`, data, cookie)
             console.log(res)
             if (res.data.statusCode === 200) {
                 Swal.fire({

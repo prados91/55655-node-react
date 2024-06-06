@@ -53,7 +53,7 @@ const NavBar = () => {
         try {
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "token")
-            const res = await axios.post("http://localhost:8080/api/sessions/me", cookie)
+            const res = await axios.post("https://coderbasketstore.up.railway.app/api/sessions/me", cookie)
             if (res.data.statusCode === 200) {
                 const user = res.data.response
                 setUserId(user._id)
@@ -121,7 +121,7 @@ const NavBar = () => {
             hideMenu()
             let cookie = document.cookie.split("; ")
             cookie = cookie.find(each => each.split("=")[0] === "token")
-            const res = await axios.post("http://localhost:8080/api/sessions/signout", cookie)
+            const res = await axios.post("https://coderbasketstore.up.railway.app/api/sessions/signout", cookie)
             if (res.data.statusCode === 200) {
                 setAdmin(false)
                 setUser(false)

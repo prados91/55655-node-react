@@ -7,7 +7,7 @@ export const UserContext = createContext([]);
 
 export const UserProvider = ({ children }) => {
 
-    const API_USER = "http://localhost:8080/api/sessions/me"
+    const API_USER = "https://coderbasketstore.up.railway.app/api/sessions/me"
     const verifyUser = async () => {
         try {
             let cookie = document.cookie.split("; ")

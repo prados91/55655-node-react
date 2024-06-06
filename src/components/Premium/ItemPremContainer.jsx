@@ -25,7 +25,7 @@ const ItemPremContainer = () => {
     const fetchProducts = async () => {
         setLoad(true);
         try {
-            const API_LINK = `http://localhost:8080/api/products/premium/me`
+            const API_LINK = `https://coderbasketstore.up.railway.app/api/products/premium/me`
             const res = await axios.get(API_LINK);
             if (res.data.statusCode === 200) {
                 setProducts(() => [...res.data.response.docs]);
