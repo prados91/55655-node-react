@@ -290,16 +290,19 @@ export const CartProvider = ({ children }) => {
     const checkout = async () => {
         try {
             const res = await axios.post("https://coderbasketstore.up.railway.app/api/payments/checkout")
-            Swal.fire({
-                title: `Checkout!`,
-                icon: "success",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK",
-            }).then(() => {
-                location.replace(res.data.url)
-                deleteAll()
-            });
-            return true
+            console.log(res.data)
+            if (res.data) {
+                await deleteAll()
+                Swal.fire({
+                    title: `Checkout!`,
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "OK",
+                }).then(() => {
+                    location.replace(res.data.url)
+                });
+                return true
+            }
 
         } catch (error) {
             Swal.fire({
